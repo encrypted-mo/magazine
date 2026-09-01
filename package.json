@@ -90,7 +90,7 @@
     "husky": ">=6",
     "lint-staged": ">=10",
     "next-unused": "0.0.6",
-    "postcss": "^8.1.10",
+    "postcss": "^8.5.26",
     "postcss-nesting": "^7.0.1",
     "prettier": "^2.1.2",
     "tailwindcss": "^2.0.1",
