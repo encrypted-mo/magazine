@@ -5010,7 +5010,7 @@
   "resolved" "https://registry.npmjs.org/nano-pubsub/-/nano-pubsub-1.0.2.tgz"
   "version" "1.0.2"
 
-"nanoid@^3.3.17":
+"nanoid@^3.3.6":
   "integrity" "sha512-DTg4MJbGMWkfi6VZFdNt2/caMbQy4Ou+Op/hJQvGEWcnVfoA1QA+xzRKAzw9jD6+GVOOeYr/mIcuDSdug6F6+w=="
   "resolved" "https://registry.npmjs.org/nanoid/-/nanoid-3.3.18.tgz"
   "version" "3.3.18"
@@ -5560,7 +5560,7 @@
     "safe-buffer" "^5.0.1"
     "sha.js" "^2.4.8"
 
-"picocolors@^1.1.1":
+"picocolors@^1.0.0":
   "integrity" "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA=="
   "resolved" "https://registry.npmjs.org/picocolors/-/picocolors-1.1.1.tgz"
   "version" "1.1.1"
@@ -5684,14 +5684,14 @@
     "indexes-of" "^1.0.1"
     "uniq" "^1.0.1"
 
-"postcss@8":
-  "integrity" "sha512-u82N74LFzG8ca+dD8puPnplTXoGH4fTPpVGuIbt36G3qvNlkvfD0lEAZSxaly3KX8TS/L1A1gsCEmvKmBcVbkQ=="
-  "resolved" "https://registry.npmjs.org/postcss/-/postcss-8.5.26.tgz"
-  "version" "8.5.26"
+"postcss@8.4.31":
+  "integrity" "sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ=="
+  "resolved" "https://registry.npmjs.org/postcss/-/postcss-8.4.31.tgz"
+  "version" "8.4.31"
   dependencies:
-    "nanoid" "^3.3.17"
-    "picocolors" "^1.1.1"
-    "source-map-js" "^1.2.1"
+    "nanoid" "^3.3.6"
+    "picocolors" "^1.0.0"
+    "source-map-js" "^1.0.2"
 
 "precinct@^7.0.0":
   "integrity" "sha512-I1RkW5PX51/q6Xl39//D7x9NgaKNGHpR5DCNaoxP/b2+KbzzXDNhauJUMV17KSYkJA41CSpwYUPRtRoNxbshWA=="
@@ -6588,7 +6588,7 @@
   "resolved" "https://registry.npmjs.org/source-list-map/-/source-list-map-2.0.1.tgz"
   "version" "2.0.1"
 
-"source-map-js@^1.2.1":
+"source-map-js@^1.0.2":
   "integrity" "sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA=="
   "resolved" "https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.1.tgz"
   "version" "1.2.1"

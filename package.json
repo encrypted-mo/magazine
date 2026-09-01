@@ -96,9 +96,9 @@
     "typescript": "^4.0.5"
   },
   "overrides": {
-    "postcss": "8"
+    "postcss": "8.4.31"
   },
   "resolutions": {
-    "postcss": "8"
+    "postcss": "8.4.31"
   }
 }
