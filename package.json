@@ -96,9 +96,11 @@
     "typescript": "^4.0.5"
   },
   "overrides": {
-    "postcss": "8.4.31"
+    "postcss": "8.4.31",
+    "autoprefixer": "10.4.19"
   },
   "resolutions": {
-    "postcss": "8.4.31"
+    "postcss": "8.4.31",
+    "autoprefixer": "10.4.19"
   }
 }
