@@ -94,6 +94,3 @@
     "postcss-nesting": "^7.0.1",
     "prettier": "^2.1.2",
     "tailwindcss": "^2.0.1",
-    "typescript": "^4.0.5"
-  }
-}
