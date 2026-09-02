@@ -1,47 +1,48 @@
-import ReactMarkdown from 'react-markdown'
+/* eslint-disable react/prop-types */
+
+import { PortableText, PortableTextComponents } from '@portabletext/react'
 import Image from 'next/image'
 import { getMediaURL } from '@lib/api'
+import { urlForImage } from '@lib/sanityClient'
 
-const ParagraphRenderer = (props: any) => {
-  const element = props.children[0]
-  // escape all the image elements
-  return element.type.name === 'ImageRenderer' ? (
-    { ...element }
-  ) : (
-    <p {...props} />
-  )
-}
+const ImageRenderer = ({ value }: { value: any }) => {
+  if (!value?.asset) return null
 
-const ImageRenderer = ({ src, alt }: { src: string; alt: string }) => {
-  const srcUrl = getMediaURL(src)
+  const imageUrl = urlForImage(value)
+  const alt = value.alt || ''
 
   return (
-    <figure className="relative w-full h-full mt-6">
-      {src.startsWith(process.env.API_URL || 'http://localhost:1337') ? (
-        // Optimize with next/image if the image come from our provider
-        <Image src={srcUrl} alt={alt} layout="fill" objectFit="contain" />
-      ) : (
-        // Regular img tag whenever the image came from a different domain or source
-        <img src={srcUrl} alt={alt} style={{ objectFit: 'contain' }} />
+    <figure className="relative w-full mt-6">
+      <Image
+        src={getMediaURL(imageUrl)}
+        alt={alt}
+        width={1200}
+        height={800}
+        className="w-full h-auto object-contain"
+      />
+      {alt && (
+        <figcaption className="text-sm mt-4 text-primary-60 text-center">
+          {alt}
+        </figcaption>
       )}
-      <figcaption
-        className="text-sm mt-4 text-primary-60"
-        style={{ textAlign: 'center' }}
-      >
-        {alt}
-      </figcaption>
     </figure>
   )
 }
 
-const Markdown = ({ content }: { content?: string }) => {
+const components: PortableTextComponents = {
+  types: {
+    image: ImageRenderer,
+  },
+}
+
+const Markdown = ({ content }: { content?: any }) => {
   return (
     <section className="markdown">
-      <ReactMarkdown
-        renderers={{ image: ImageRenderer, paragraph: ParagraphRenderer }}
-      >
-        {content || ''}
-      </ReactMarkdown>
+      {Array.isArray(content) ? (
+        <PortableText value={content} components={components} />
+      ) : (
+        <p>{content || ''}</p>
+      )}
     </section>
   )
 }
