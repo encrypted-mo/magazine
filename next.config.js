@@ -45,9 +45,7 @@ module.exports = (phase) => {
       domains: ['res.cloudinary.com', 'cdn.sanity.io'],
     },
     webpack(config) {
-      config.optimization.minimizer = config.optimization.minimizer.filter(
-        (plugin) => plugin.constructor.name !== 'OptimizeCssAssetsWebpackPlugin'
-      )
+      config.optimization.minimize = false
       return config
     },
     async rewrites() {
