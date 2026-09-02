@@ -11,6 +11,8 @@ export const getMediaURL = (url?: string) => {
 }
 
 function mapArticle(doc: any): TArticle {
+  const imageUrl = doc.coverImage ? urlForImage(doc.coverImage) : ''
+
   return {
     id: doc._id,
     title: doc.title,
@@ -31,8 +33,10 @@ function mapArticle(doc: any): TArticle {
     created_at: doc.publishedAt,
     updated_at: doc.publishedAt,
     cover: {
-      url: doc.coverImage ? urlForImage(doc.coverImage) : '',
+      url: imageUrl,
       alternativeText: doc.title || '',
+      width: doc.imageWidth || 1200,
+      height: doc.imageHeight || 800,
       formats: {},
     } as TStrapiImage,
   }
@@ -53,20 +57,56 @@ function mapCategory(doc: any): TCategory {
 
 export async function fetchAPI(path: string) {
   if (path.startsWith('/articles')) {
-    const docs = await sanityClient.fetch(
-      `*[_type == "article"] | order(publishedAt desc) {
-        _id, title, "slug": slug.current, publishedAt, excerpt, body, coverImage,
-        category->{_id, title, "slug": slug.current},
-        author->{_id, name, "slug": slug.current}
-      }`
-    )
+    const slugMatch = path.match(/\/articles\?slug=([^&]+)/)
+    const slug = slugMatch ? decodeURIComponent(slugMatch[1]) : null
+
+    const query = slug
+      ? `*[_type == "article" && slug.current == $slug][0]{
+          _id,
+          title,
+          "slug": slug.current,
+          publishedAt,
+          excerpt,
+          body,
+          coverImage,
+          "imageWidth": coverImage.asset->metadata.dimensions.width,
+          "imageHeight": coverImage.asset->metadata.dimensions.height,
+          category->{_id, title, "slug": slug.current},
+          author->{_id, name, "slug": slug.current}
+        }`
+      : `*[_type == "article"] | order(publishedAt desc){
+          _id,
+          title,
+          "slug": slug.current,
+          publishedAt,
+          excerpt,
+          body,
+          coverImage,
+          "imageWidth": coverImage.asset->metadata.dimensions.width,
+          "imageHeight": coverImage.asset->metadata.dimensions.height,
+          category->{_id, title, "slug": slug.current},
+          author->{_id, name, "slug": slug.current}
+        }`
+
+    const docs = await sanityClient.fetch(query, slug ? { slug } : {})
+
+    if (slug) {
+      return docs ? [mapArticle(docs)] : []
+    }
+
     return docs.map(mapArticle)
   }
 
   if (path.startsWith('/categories')) {
     const docs = await sanityClient.fetch(
-      `*[_type == "category"]{_id, title, "slug": slug.current, _createdAt}`
+      `*[_type == "category"]{
+        _id,
+        title,
+        "slug": slug.current,
+        _createdAt
+      }`
     )
+
     return docs.map(mapCategory)
   }
 
