@@ -42,9 +42,17 @@ const Header = () => {
       <Button href="/lists" ariaLabel="My bookmarks">
         <Bookmark />
       </Button>
+
       <Link href="/">
-        <a className="serif text-2xl">Magazine</a>
+        <a className="flex items-center justify-center">
+          <img
+            src="/Images/hsc%20logo.png"
+            alt="High Skul Creatives"
+            className="h-10 w-auto"
+          />
+        </a>
       </Link>
+
       <Button onClick={() => setShowSearch(true)} ariaLabel="Search">
         {showSearch ? <Close /> : <Search />}
       </Button>
