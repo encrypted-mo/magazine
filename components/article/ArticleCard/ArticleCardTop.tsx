@@ -11,14 +11,15 @@ type Props = {
 const ArticleCardTop = ({ article, index }: Props) => {
   return (
     <article className={s.top}>
-      <div className={s.topNumber}>{index + 1}</div>
+      <div className={s.topNumber}>{String(index).padStart(2, '0')}</div>
+
       <section>
         <Link href={`/articles/${article.slug}`}>
           <a>
             <h3
               className={cn(
                 s.title,
-                'serif leading-tight overflow-hidden max-h-28 mb-3 hover:underline text-xl'
+                'serif text-xl md:text-2xl leading-tight overflow-hidden max-h-24 mb-3 hover:underline'
               )}
             >
               {article.title}
@@ -26,22 +27,26 @@ const ArticleCardTop = ({ article, index }: Props) => {
           </a>
         </Link>
 
-        <div className="text-sm flex flex-wrap">
+        <div className="text-xs flex flex-wrap items-center text-primary-60">
           <p>
-            By
+            By{' '}
             <Link href={`/contributors/${article.author.slug}`}>
-              <a className="pl-1 font-bold hover:underline">
+              <a className="font-bold text-primary hover:underline">
                 {article.author.name}
               </a>
             </Link>
           </p>
-          <span className="mx-3">|</span>
+
+          <span className="mx-2 text-primary-20">·</span>
+
           <Link href={`/${article.category.slug}`}>
             <a className="text-accent hover:underline">
               {article.category.title}
             </a>
           </Link>
-          <span className="mx-3">|</span>
+
+          <span className="mx-2 text-primary-20">·</span>
+
           <Date date={article.published_at as string} />
         </div>
       </section>

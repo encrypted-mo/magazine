@@ -5,19 +5,18 @@ import ExternalLink from '@components/ui/Link/ExternalLink'
 
 function AuthorSocialMedia({ urls }: { urls: TContributor['urls'] }) {
   if (!urls) return null
-  const { twitter, instagram, facebook } = urls
 
-  // only return one social media
+  const { twitter, instagram, facebook } = urls
 
   if (twitter) {
     return (
       <ExternalLink
-        className="text-primary-60 flex items-center pt-1"
+        className="text-primary-60 flex items-center gap-2 pt-2 text-sm hover:text-accent transition-colors"
         to={`https://twitter.com/${twitter}`}
-        ariaLabel="Author's twitter"
+        ariaLabel="Author's Twitter"
       >
-        <Twitter width="20" height="20" />
-        <span className="ml-1 text-sm">{twitter}</span>
+        <Twitter width="16" height="16" />
+        <span>@{twitter}</span>
       </ExternalLink>
     )
   }
@@ -25,12 +24,12 @@ function AuthorSocialMedia({ urls }: { urls: TContributor['urls'] }) {
   if (instagram) {
     return (
       <ExternalLink
-        className="text-primary-60 flex items-center pt-1"
+        className="text-primary-60 flex items-center gap-2 pt-2 text-sm hover:text-accent transition-colors"
         to={`https://instagram.com/${instagram}`}
-        ariaLabel="Author's instagram"
+        ariaLabel="Author's Instagram"
       >
-        <Instagram width="20" height="20" />
-        <span className="ml-1 text-sm">{instagram}</span>
+        <Instagram width="16" height="16" />
+        <span>@{instagram}</span>
       </ExternalLink>
     )
   }
@@ -38,12 +37,12 @@ function AuthorSocialMedia({ urls }: { urls: TContributor['urls'] }) {
   if (facebook) {
     return (
       <ExternalLink
-        className="text-primary-60 flex items-center pt-1"
+        className="text-primary-60 flex items-center gap-2 pt-2 text-sm hover:text-accent transition-colors"
         to={`https://facebook.com/${facebook}`}
-        ariaLabel="Author's facebook"
+        ariaLabel="Author's Facebook"
       >
-        <Facebook width="20" height="20" />
-        <span className="ml-1 text-sm">{facebook}</span>
+        <Facebook width="16" height="16" />
+        <span>{facebook}</span>
       </ExternalLink>
     )
   }

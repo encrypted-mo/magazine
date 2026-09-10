@@ -9,7 +9,12 @@ export async function getStaticProps() {
   const articles: TArticle[] = await fetchAPI('/articles')
   const navigation: TNavigation = await getNavigation()
 
-  return { props: { articles, navigation } }
+  return {
+    props: {
+      articles,
+      navigation,
+    },
+  }
 }
 
 function Home({
@@ -18,33 +23,39 @@ function Home({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const isTablet = useMediaQuery(1023)
 
+  const topStories = articles.slice(0, 4)
+  const recentArticles = articles.slice(4, 9)
+  const featuredArticles = articles.slice(9, 14)
+  const popularArticles = articles.slice(14, 19)
+  const moreArticles = articles.slice(19, 24)
+
   return (
     <Layout navigation={navigation}>
       {isTablet ? (
-        //Tablet and smaller devices
-        <ArticlesCarousel title="Top stories" articles={articles.slice(0, 4)} />
+        <ArticlesCarousel title="Top Stories" articles={topStories} />
       ) : (
-        <ArticlesHero articles={articles.slice(0, 4)} />
+        <ArticlesHero articles={topStories} />
       )}
 
-      <ArticlesList articles={articles.slice(5, 10)} title="Recent" />
+      <ArticlesList articles={recentArticles} title="Recent" />
 
       <div className="lg:py-24 lg:flex lg:w-full lg:gap-28 lg:mx-auto">
         <ArticlesList
-          articles={articles.slice(0, 5)}
+          articles={featuredArticles}
           title="Featured"
           variant="top"
           className="lg:w-1/2"
         />
+
         <ArticlesList
-          articles={articles.slice(6, 11)}
+          articles={popularArticles}
           title="Popular"
           variant="top"
           className="lg:w-1/2"
         />
       </div>
 
-      <ArticlesList articles={articles.slice(10, 15)} title="More articles" />
+      <ArticlesList articles={moreArticles} title="More Articles" />
     </Layout>
   )
 }

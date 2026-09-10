@@ -31,31 +31,39 @@ const ArticleCard = ({ article, variant = 'default' }: Props) => {
         </a>
       </Link>
 
-      <section className="pt-4">
+      <section className="pt-5">
         <Link href={`/${article.category.slug}`}>
-          <a className="uppercase text-sm font-bold text-accent hover:underline">
+          <a className="inline-block uppercase text-xs font-bold tracking-widest text-accent hover:opacity-70">
             {article.category.title}
           </a>
         </Link>
+
         <Link href={`/articles/${article.slug}`}>
           <a>
             <h3
               className={cn(
                 s.title,
-                'serif leading-tight overflow-hidden max-h-28 hover:underline'
+                'serif text-2xl md:text-3xl leading-tight overflow-hidden max-h-28 mt-3 hover:underline'
               )}
             >
               {article.title}
             </h3>
           </a>
         </Link>
-        <div className="text-sm mt-2">
+
+        <div className="text-sm mt-3 text-primary-60">
           By{' '}
           <Link href={`/contributors/${article.author.slug}`}>
-            <a className="font-bold hover:underline">{article.author.name}</a>
+            <a className="font-bold text-primary hover:underline">
+              {article.author.name}
+            </a>
           </Link>
         </div>
-        <Date date={article.published_at as string} />
+
+        <Date
+          className="text-sm text-primary-60"
+          date={article.published_at as string}
+        />
       </section>
     </article>
   )

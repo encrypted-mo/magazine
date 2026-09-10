@@ -29,6 +29,7 @@ const Header = () => {
         enableBodyScroll(searchRef.current)
       }
     }
+
     return () => {
       clearAllBodyScrollLocks()
     }
@@ -37,42 +38,45 @@ const Header = () => {
   return (
     <header
       ref={searchRef}
-      className="fixed bg-secondary h-14 top-0 left-0 right-0 px-4 flex justify-between items-center z-20 "
+      className={cn(s.header, 'fixed top-0 left-0 right-0 z-20 bg-secondary')}
     >
-      <Button href="/lists" ariaLabel="My bookmarks">
-        <Bookmark />
-      </Button>
+      <div className={s.headerInner}>
+        <Link href="/">
+          <a className={s.logo} aria-label="HighSkul Creatives home">
+            <img src="/Images/hsc%20logo.png" alt="HighSkul Creatives" />
+          </a>
+        </Link>
 
-      <Link href="/">
-        <a className="flex items-center justify-center">
-          <img
-            src="/Images/hsc%20logo.png"
-            alt="High Skul Creatives"
-            className="h-10 w-auto"
-          />
-        </a>
-      </Link>
+        <div className={s.actions}>
+          <Button href="/lists" ariaLabel="My bookmarks">
+            <Bookmark />
+          </Button>
 
-      <Button onClick={() => setShowSearch(true)} ariaLabel="Search">
-        {showSearch ? <Close /> : <Search />}
-      </Button>
+          <Button onClick={() => setShowSearch(true)} ariaLabel="Search">
+            <Search />
+          </Button>
+        </div>
+      </div>
 
       <div className={cn(s.searchContainer, showSearch ? 'flex' : 'hidden')}>
         <label className="flex items-center border-b w-full py-2 pl-3 focus-within:border-primary md:pb-0">
           <span className="absolute">
             <Search />
           </span>
+
           <input
             type="search"
             inputMode="search"
             name="search"
             id="search"
-            placeholder="Search..."
+            placeholder="Search HighSkul..."
             className="bg-transparent outline-none w-full py-2 pr-2 pl-9 search-btn-none lg:text-sm"
             onKeyUp={(e) => {
               e.preventDefault()
+
               if (e.key === 'Enter') {
                 const q = e.currentTarget.value
+
                 router.push(
                   {
                     pathname: '/search',
@@ -84,6 +88,7 @@ const Header = () => {
               }
             }}
           />
+
           <Button onClick={() => setShowSearch(false)} ariaLabel="Close search">
             <Close />
           </Button>
