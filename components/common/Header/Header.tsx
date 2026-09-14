@@ -43,7 +43,7 @@ const Header = () => {
       <div className={s.headerInner}>
         <Link href="/">
           <a className={s.logo} aria-label="HighSkul Creatives home">
-            <img src="/Images/hsc%20logo.png" alt="HighSkul Creatives" />
+            <img src="/Images/hsk-logo.png" alt="HighSkul Creatives" />
           </a>
         </Link>
 

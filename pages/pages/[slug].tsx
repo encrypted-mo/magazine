@@ -1,7 +1,6 @@
 import { Layout } from '@components/common/Layout'
 import Hero from '@components/common/Hero/Hero'
 import { fetchAPI } from '@lib/api'
-import { InferGetStaticPropsType } from 'next'
 import { PortableText } from '@portabletext/react'
 
 export async function getStaticPaths() {
@@ -17,12 +16,8 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({
-  params,
-}: {
-  params: { slug: string }
-}) {
-  const pages = await fetchAPI(`/pages?slug=${params.slug}`)
+export async function getStaticProps({ params }: { params: { slug: string } }) {
+  const pages: TPage[] = await fetchAPI(`/pages?slug=${params.slug}`)
 
   if (!pages || pages.length === 0) {
     return {
@@ -37,9 +32,7 @@ export async function getStaticProps({
   }
 }
 
-export default function Page({
-  page,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Page({ page }: { page: TPage }) {
   return (
     <Layout>
       <Hero title={page.title} />
