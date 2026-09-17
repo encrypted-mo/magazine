@@ -5,61 +5,75 @@ import Twitter from '@components/icons/Twitter'
 import Youtube from '@components/icons/Youtube'
 import ExternalLink from '@components/ui/Link/ExternalLink'
 import { SOCIAL_USERNAMES } from '@lib/constants'
-
 const SocialUrls = () => {
   const { twitter, instagram, facebook, youtube, linkedin } = SOCIAL_USERNAMES
-
   return (
     <ul className="flex py-6 justify-center">
       {twitter && (
         <li className="px-4">
           <ExternalLink
-            to={twitter}
-            ariaLabel="X / Twitter"
+            to={
+              twitter.startsWith('http')
+                ? twitter
+                : `https://twitter.com/${twitter}`
+            }
+            ariaLabel="Twitter"
           >
             <Twitter width="20" height="20" />
           </ExternalLink>
         </li>
       )}
-
       {instagram && (
         <li className="px-4">
           <ExternalLink
-            to={instagram}
+            to={
+              instagram.startsWith('http')
+                ? instagram
+                : `https://instagram.com/${instagram}`
+            }
             ariaLabel="Instagram"
           >
             <Instagram width="20" height="20" />
           </ExternalLink>
         </li>
       )}
-
       {facebook && (
         <li className="px-4">
           <ExternalLink
-            to={facebook}
+            to={
+              facebook.startsWith('http')
+                ? facebook
+                : `https://facebook.com/${facebook}`
+            }
             ariaLabel="Facebook"
           >
             <Facebook width="20" height="20" />
           </ExternalLink>
         </li>
       )}
-
       {youtube && (
         <li className="px-4">
           <ExternalLink
-            to={youtube}
-            ariaLabel="YouTube"
+            to={
+              youtube.startsWith('http')
+                ? youtube
+                : `https://youtube.com/user/${youtube}`
+            }
+            ariaLabel="Youtube"
           >
             <Youtube width="20" height="20" />
           </ExternalLink>
         </li>
       )}
-
       {linkedin && (
         <li className="px-4">
           <ExternalLink
-            to={linkedin}
-            ariaLabel="LinkedIn"
+            to={
+              linkedin.startsWith('http')
+                ? linkedin
+                : `https://linkedin.com/in/${linkedin}`
+            }
+            ariaLabel="Linkedin"
           >
             <Linkedin width="20" height="20" />
           </ExternalLink>
@@ -68,5 +82,4 @@ const SocialUrls = () => {
     </ul>
   )
 }
-
 export default SocialUrls
