@@ -34,7 +34,10 @@ export async function getStaticProps({
   const navigation: TNavigation = await getNavigation()
 
   if (!article) {
-    return { props: {} }
+    return {
+      props: {},
+      revalidate: 10,
+    }
   }
 
   return {
@@ -43,6 +46,7 @@ export async function getStaticProps({
       navigation,
       article,
     },
+    revalidate: 10,
   }
 }
 
