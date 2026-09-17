@@ -14,48 +14,52 @@ const SocialUrls = () => {
       {twitter && (
         <li className="px-4">
           <ExternalLink
-            to={`https://twitter.com/${twitter}`}
-            ariaLabel="Twitter"
+            to={twitter}
+            ariaLabel="X / Twitter"
           >
             <Twitter width="20" height="20" />
           </ExternalLink>
         </li>
       )}
+
       {instagram && (
         <li className="px-4">
           <ExternalLink
-            to={`https://instagram.com/${instagram}`}
+            to={instagram}
             ariaLabel="Instagram"
           >
             <Instagram width="20" height="20" />
           </ExternalLink>
         </li>
       )}
+
       {facebook && (
         <li className="px-4">
           <ExternalLink
-            to={`https://facebook.com/${facebook}`}
+            to={facebook}
             ariaLabel="Facebook"
           >
             <Facebook width="20" height="20" />
           </ExternalLink>
         </li>
       )}
+
       {youtube && (
         <li className="px-4">
           <ExternalLink
-            to={`https://youtube.com/user/${youtube}`}
-            ariaLabel="Youtube"
+            to={youtube}
+            ariaLabel="YouTube"
           >
             <Youtube width="20" height="20" />
           </ExternalLink>
         </li>
       )}
+
       {linkedin && (
         <li className="px-4">
           <ExternalLink
-            to={`https://linkedin.com/in/${linkedin}`}
-            ariaLabel="Linkedin"
+            to={linkedin}
+            ariaLabel="LinkedIn"
           >
             <Linkedin width="20" height="20" />
           </ExternalLink>
