@@ -80,6 +80,43 @@ function mapAuthor(doc: any): TContributor {
       facebook: doc.facebook,
       linkedin: doc.linkedin,
     },
+    featured: doc.image
+      ? {
+          id: 0,
+          description: doc.bio || '',
+          profile_image: {
+            id: 0,
+            name: doc.name,
+            alternativeText: doc.name || '',
+            caption: '',
+            width: doc.imageWidth || 400,
+            height: doc.imageHeight || 400,
+            hash: '',
+            ext: '',
+            mime: '',
+            size: 0,
+            url: urlForImage(doc.image),
+            previewUrl: null,
+            provider: '',
+            provider_metadata: null,
+            created_at: doc._createdAt || '',
+            updated_at: doc._updatedAt || '',
+            formats: {
+              thumbnail: {
+                name: '',
+                hash: '',
+                ext: '',
+                mime: '',
+                width: doc.imageWidth || 400,
+                height: doc.imageHeight || 400,
+                size: 0,
+                path: null,
+                url: urlForImage(doc.image),
+              },
+            },
+          },
+        }
+      : undefined,
   }
 }
 
@@ -224,7 +261,11 @@ export async function fetchAPI(path: string) {
       twitter,
       instagram,
       facebook,
-      linkedin
+      linkedin,
+      image,
+      bio,
+      "imageWidth": image.asset->metadata.dimensions.width,
+      "imageHeight": image.asset->metadata.dimensions.height
     }`
 
     const docs = await sanityClient.fetch(query)
