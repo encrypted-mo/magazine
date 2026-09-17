@@ -5,8 +5,10 @@ import Twitter from '@components/icons/Twitter'
 import Youtube from '@components/icons/Youtube'
 import ExternalLink from '@components/ui/Link/ExternalLink'
 import { SOCIAL_USERNAMES } from '@lib/constants'
+
 const SocialUrls = () => {
   const { twitter, instagram, facebook, youtube, linkedin } = SOCIAL_USERNAMES
+
   return (
     <ul className="flex py-6 justify-center">
       {twitter && (
@@ -42,7 +44,7 @@ const SocialUrls = () => {
       {youtube && (
         <li className="px-4">
           <ExternalLink
-            to={`https://youtube.com/user/${youtube}`}
+            to={`https://youtube.com/@${youtube}`}
             ariaLabel="Youtube"
           >
             <Youtube width="20" height="20" />
@@ -62,4 +64,5 @@ const SocialUrls = () => {
     </ul>
   )
 }
+
 export default SocialUrls
