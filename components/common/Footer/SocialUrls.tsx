@@ -12,11 +12,7 @@ const SocialUrls = () => {
       {twitter && (
         <li className="px-4">
           <ExternalLink
-            to={
-              twitter.startsWith('http')
-                ? twitter
-                : `https://twitter.com/${twitter}`
-            }
+            to={`https://twitter.com/${twitter}`}
             ariaLabel="Twitter"
           >
             <Twitter width="20" height="20" />
@@ -26,11 +22,7 @@ const SocialUrls = () => {
       {instagram && (
         <li className="px-4">
           <ExternalLink
-            to={
-              instagram.startsWith('http')
-                ? instagram
-                : `https://instagram.com/${instagram}`
-            }
+            to={`https://instagram.com/${instagram}`}
             ariaLabel="Instagram"
           >
             <Instagram width="20" height="20" />
@@ -40,11 +32,7 @@ const SocialUrls = () => {
       {facebook && (
         <li className="px-4">
           <ExternalLink
-            to={
-              facebook.startsWith('http')
-                ? facebook
-                : `https://facebook.com/${facebook}`
-            }
+            to={`https://facebook.com/${facebook}`}
             ariaLabel="Facebook"
           >
             <Facebook width="20" height="20" />
@@ -54,11 +42,7 @@ const SocialUrls = () => {
       {youtube && (
         <li className="px-4">
           <ExternalLink
-            to={
-              youtube.startsWith('http')
-                ? youtube
-                : `https://youtube.com/user/${youtube}`
-            }
+            to={`https://youtube.com/user/${youtube}`}
             ariaLabel="Youtube"
           >
             <Youtube width="20" height="20" />
@@ -68,11 +52,7 @@ const SocialUrls = () => {
       {linkedin && (
         <li className="px-4">
           <ExternalLink
-            to={
-              linkedin.startsWith('http')
-                ? linkedin
-                : `https://linkedin.com/in/${linkedin}`
-            }
+            to={`https://linkedin.com/in/${linkedin}`}
             ariaLabel="Linkedin"
           >
             <Linkedin width="20" height="20" />
