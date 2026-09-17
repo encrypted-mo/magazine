@@ -9,79 +9,68 @@ import Custom404 from 'pages/404'
 import Twitter from '@components/icons/Twitter'
 import { BreadcrumbJsonLd, SocialProfileJsonLd } from 'next-seo'
 import { SITE_URL } from '@lib/constants'
-
 export async function getStaticPaths() {
-  const slugs: TContributor[] = await fetchAPI('/contributors')
-
+  const contributors: TContributor[] = await fetchAPI('/contributors')
   return {
-    paths: slugs.map((contributor) => `/contributors/${contributor.slug}`),
+    paths: contributors.map((contributor) => ({
+      params: {
+        slug: contributor.slug,
+      },
+    })),
     fallback: false,
   }
-
-  // If you have too many contributors you can pass no paths at all an generate all the pages at request time.
-  // Read more on https://nextjs.org/docs/basic-features/data-fetching#getstaticpaths-static-generation
-
-  // return {
-  //   paths: [],
-  //   fallback: 'blocking',
-  // }
 }
-
 export async function getStaticProps({
   params,
 }: GetStaticPropsContext<{ slug: string }>) {
-  const contributor: TContributor = (
-    await fetchAPI(`/contributors?slug=${params?.slug}`)
-  )[0]
-
+  const contributors: TContributor[] = await fetchAPI(
+    `/contributors?slug=${params?.slug}`
+  )
+  const contributor = contributors[0]
   const articles: TArticle[] = await fetchAPI(
     `/articles?author.slug=${params?.slug}`
   )
-
-  // No props will trigger a 404
-  if (!contributor) return { props: {} }
-  return { props: { contributor, articles } }
+  if (!contributor) {
+    return {
+      notFound: true,
+    }
+  }
+  return {
+    props: {
+      contributor,
+      articles,
+    },
+  }
 }
-
 function ContributorPage({
   contributor,
   articles,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { isFallback } = useRouter()
-
   if (!isFallback && !contributor) {
     return <Custom404 />
   }
-
-  // if featuared is diferent than undefined it will be true
-  const isFeatured = !!contributor?.featured
-
-  const thumbnailUrl = getMediaURL(
-    contributor?.featured?.profile_image.formats.thumbnail?.url
-  )
-
+  const profileImage = contributor?.featured?.profile_image?.formats?.thumbnail?.url
+  const imageUrl = profileImage ? getMediaURL(profileImage) : ''
+  const bio = contributor?.featured?.description
   const contributorSocialMedia = (urls: TContributor['urls']) => {
     if (!urls) return []
-
     const { facebook, twitter, instagram, linkedin } = urls
-
     return [
-      facebook && `https://www.facebook.com/${facebook}`,
-      instagram && `https://instagram.com/${instagram}`,
-      linkedin && `https://www.linkedin.com/in/${linkedin}`,
-      twitter && `https://twitter.com/${twitter}`,
-    ].filter((elem) => elem !== null)
+      facebook,
+      twitter,
+      instagram,
+      linkedin,
+    ].filter(Boolean) as string[]
   }
-
   return (
     <Layout>
       <SocialProfileJsonLd
         type="Person"
         name={contributor?.name as string}
         url={`${SITE_URL}/contributors/${contributor?.slug}`}
-        sameAs={contributorSocialMedia(contributor?.urls) as []}
+        sameAs={contributorSocialMedia(contributor?.urls)}
       />
-
       <BreadcrumbJsonLd
         itemListElements={[
           {
@@ -92,47 +81,50 @@ function ContributorPage({
           {
             position: 2,
             name: contributor?.name as string,
-            item: `${SITE_URL}/contributors/${contributor?.name}`,
+            item: `${SITE_URL}/contributors/${contributor?.slug}`,
           },
         ]}
       />
-
       <section className="text-center py-4">
-        {isFeatured && (
-          <figure className="relative w-24 h-24 mx-auto my-6">
+        {imageUrl && (
+          <figure className="relative w-32 h-32 mx-auto my-6">
             <Image
-              src={thumbnailUrl}
-              className="rounded-full"
+              src={imageUrl}
+              className="rounded-full object-cover"
               alt={`${contributor?.name} profile`}
               layout="fill"
             />
           </figure>
         )}
-        <h1 className="serif mt-0 text-2xl">{contributor?.name}</h1>
-        <p className="text-sm font-serif uppercase  mb-2">
+        <h1 className="serif mt-0 text-2xl">
+          {contributor?.name}
+        </h1>
+        <p className="text-sm font-serif uppercase mb-2">
           {contributor?.role}
         </p>
         {contributor?.urls?.twitter && (
           <ExternalLink
-            to={`https://twitter.com/${contributor?.urls.twitter}`}
-            ariaLabel="Contributor's twitter"
+            to={contributor.urls.twitter}
+            ariaLabel="Contributor's Twitter"
             className="flex w-max mx-auto items-center opacity-60 hover:opacity-100"
           >
             <span className="mr-2">
               <Twitter width="18" height="18" />
             </span>
-            {contributor?.urls.twitter}
+            Twitter / X
           </ExternalLink>
         )}
-        {isFeatured && (
-          <p className="text-center py-2 leading-tight mt-8 lg:w-4/6 lg:mx-auto">
-            {contributor?.featured?.description}
-          </p>
+        {bio && (
+          <div className="text-center py-2 leading-relaxed mt-8 lg:w-4/6 lg:mx-auto">
+            <p>{bio}</p>
+          </div>
         )}
       </section>
-      <ArticlesList articles={articles || []} title="all contributons" />
+      <ArticlesList
+        articles={articles || []}
+        title="All contributions"
+      />
     </Layout>
   )
 }
-
 export default ContributorPage
