@@ -5,9 +5,11 @@ import Document, {
   NextScript,
   DocumentContext,
 } from 'next/document'
+
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx)
+
     return initialProps
   }
   render() {
@@ -16,10 +18,6 @@ class MyDocument extends Document {
         {process.env.NODE_ENV === 'production' ? (
           // Only run GA on Production
           <Head>
-            <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-            <link rel="icon" href="/favicon.ico" sizes="any" />
-            <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-            <link rel="manifest" href="/site.webmanifest" />
             <script
               async
               src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_MEASUREMENT_ID}`}
@@ -39,12 +37,7 @@ class MyDocument extends Document {
             />
           </Head>
         ) : (
-          <Head>
-            <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-            <link rel="icon" href="/favicon.ico" sizes="any" />
-            <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-            <link rel="manifest" href="/site.webmanifest" />
-          </Head>
+          <Head />
         )}
         <body>
           <Main />
@@ -54,4 +47,5 @@ class MyDocument extends Document {
     )
   }
 }
+
 export default MyDocument
