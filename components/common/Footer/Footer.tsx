@@ -30,9 +30,9 @@ const Footer = ({ categories, pages }: TNavigation) => {
               </Link>
             </li>
             <li>
-              <Link href="/contributors">
-                <a className={s.link}>Contact</a>
-              </Link>
+              <a className={s.link} href="mailto:hiskulcreatives@gmail.com">
+                Contact
+              </a>
             </li>
           </ul>
         </div>
