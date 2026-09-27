@@ -1,5 +1,6 @@
 import { DefaultSeo } from 'next-seo'
 import { SITE_NAME, SEO_DESCRIPTION, SITE_URL, OG_IMAGE } from '@lib/constants'
+
 const Head = () => {
   return (
     <DefaultSeo
@@ -8,7 +9,7 @@ const Head = () => {
       description={SEO_DESCRIPTION}
       openGraph={{
         type: 'website',
-        locale: 'en_IE',
+        locale: 'en_GH',
         url: SITE_URL,
         site_name: SITE_NAME,
         images: [
@@ -20,11 +21,10 @@ const Head = () => {
         ],
       }}
       twitter={{
-        handle: '@edgarlr_',
-        site: '@edgarlr_',
         cardType: 'summary_large_image',
       }}
     />
   )
 }
+
 export default Head
