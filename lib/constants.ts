@@ -1,5 +1,3 @@
-export const TwitterURL = 'https://twitter.com'
-
 // Global Data
 export const SITE_URL = 'https://highskulcreatives.vercel.app'
 export const SITE_NAME = 'HighSkul Creatives'
@@ -7,7 +5,7 @@ export const SITE_LOGO =
   'https://highskulcreatives.vercel.app/Images/hsk-logo.png'
 
 export const SOCIAL_USERNAMES = {
-  twitter: null,
+  tiktok: 'highskull_creatives',
   instagram: 'highskul_creatives',
   facebook: '100094129848013',
   youtube: 'Highskul_creatives',
