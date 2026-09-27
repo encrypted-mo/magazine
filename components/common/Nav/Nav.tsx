@@ -194,6 +194,13 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
           )}
 
           <MenuItem
+            href="/events"
+            active={router.pathname === '/events'}
+          >
+            Events
+          </MenuItem>
+
+          <MenuItem
             href="/contributors"
             active={router.pathname === '/contributors'}
           >
