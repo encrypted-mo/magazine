@@ -8,13 +8,13 @@ export default function AboutPage() {
 
       <div className="prose max-w-3xl">
         <p>
-          HighSkul Creatives is a youth-focused publication covering student
-          life, education, campus opinions, news, opportunities and careers.
+          HighSkul Creatives is where student life meets the wider world.
         </p>
 
         <p>
-          We create and share stories that inform, entertain and give young
-          people a space to be heard.
+          We cover the stories, conversations, ideas and opportunities shaping
+          young people, from education and campus life to culture, sport,
+          careers and beyond.
         </p>
       </div>
     </Layout>
