@@ -7,42 +7,38 @@ import { Portal } from '../Portal'
 type Props = {
   children: React.ReactNode
   title: string
-  position?: 'left' | 'right'
 }
 
-const Menu = ({ children, title, position = 'right' }: Props) => {
-  const { isVisible, toggle, menuWrapperRef } = useMenuContext()
-
+const Menu = ({ children, title }: Props) => {
+  const { isVisible, toggle } = useMenuContext()
   const isMobile = useIsMobile()
 
   if (!isVisible) return null
-
-  const wrapperRect = menuWrapperRef.current?.getBoundingClientRect()
 
   if (isMobile) {
     return (
       <Portal id="drawer">
         <div
           className={cn(s.mobileMenu, 'animate-fade-in')}
-          aria-labelledby="menuTitleId"
+          aria-label={title}
         >
           <div className={cn(s.mobileContent, 'animate-slide-up')}>
-            <p className={s.mobileTitle} id="menuTitleId">
-              {title}
-            </p>
-            <ul
-              className={s.mobileList}
-              role="menu"
-              tabIndex={-1}
-              aria-labelledby="menuTitleId"
-            >
+            <div className={s.mobileHeader}>
+              <p className={s.mobileTitle}>{title}</p>
+
+              <button
+                onClick={toggle}
+                className={s.mobileClose}
+                aria-label="Close menu"
+              >
+                ×
+              </button>
+            </div>
+
+            <ul className={s.mobileList} role="menu">
               {children}
             </ul>
           </div>
-
-          <button onClick={toggle} className={s.closeBtn}>
-            Close
-          </button>
         </div>
       </Portal>
     )
@@ -50,39 +46,10 @@ const Menu = ({ children, title, position = 'right' }: Props) => {
 
   return (
     <Portal id="menu">
-      <div
-        className={s.menu}
-        aria-labelledby="menuTitleId"
-        style={
-          wrapperRect
-            ? {
-                top: `${
-                  wrapperRect.top + wrapperRect.height + window.pageYOffset
-                }px`,
-                left:
-                  position === 'left'
-                    ? `${wrapperRect.left + window.pageXOffset}px`
-                    : `calc(${
-                        wrapperRect.left +
-                        wrapperRect.width +
-                        window.pageXOffset
-                      }px - 16rem)`,
-              }
-            : {}
-        }
-      >
-        <p
-          className="px-6 mt-1 mx-0 mb-2 font-bold text-sm text-primary"
-          id="menuTitleId"
-        >
-          {title}
-        </p>
-        <ul
-          role="menu"
-          tabIndex={-1}
-          className="w-full m-0 p-0 flex flex-col rounded-2xl"
-          aria-labelledby="menuTitleId"
-        >
+      <div className={s.menu} aria-label={title}>
+        <p className={s.menuTitle}>{title}</p>
+
+        <ul role="menu" className={s.menuList}>
           {children}
         </ul>
       </div>
