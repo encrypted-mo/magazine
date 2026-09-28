@@ -25,6 +25,7 @@ const Layout = ({ children, navigation, isMarkdown = false }: Props) => {
   return (
     <>
       <Header />
+
       {navigation && <Nav categories={navigation.categories} />}
 
       <main
@@ -36,9 +37,7 @@ const Layout = ({ children, navigation, isMarkdown = false }: Props) => {
         {children}
       </main>
 
-      {navigation && (
-        <Footer categories={navigation.categories} pages={navigation.pages} />
-      )}
+      {navigation && <Footer />}
     </>
   )
 }
