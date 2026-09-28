@@ -1,5 +1,5 @@
 .menu {
-  @apply absolute w-80 mt-3 py-4 rounded-xl bg-secondary shadow-lg border;
+  @apply absolute w-80 mt-3 py-4 rounded-xl bg-secondary shadow border;
 }
 
 .menuTitle {
