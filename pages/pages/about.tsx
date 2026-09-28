@@ -4,7 +4,7 @@ import Hero from '@components/common/Hero/Hero'
 export default function AboutPage() {
   return (
     <Layout>
-      <Hero title="About" />
+      <Hero title="About Us" />
 
       <div className="prose max-w-3xl">
         <p>
