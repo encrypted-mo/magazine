@@ -29,317 +29,261 @@ export default function AboutPage() {
     <Layout>
       <article className="max-w-5xl mx-auto">
         {/* Hero */}
-        <section className="relative h-72 md:h-96 overflow-hidden rounded-2xl mb-14">
+        <section className="relative h-[420px] md:h-[620px] overflow-hidden rounded-2xl mb-16">
           <img
             src="https://cdn.modernghana.com/story_/926/499/2102019110643_m6itl8w331_6034305772744_6903731568302.png"
             alt="Students from international schools gathered at a student-led conference in Ghana"
             className="absolute inset-0 w-full h-full object-cover"
           />
 
-          <div
-            className="absolute inset-0"
-            style={{ backgroundColor: 'rgba(0, 0, 0, 0.35)' }}
-          />
+          <div className="absolute inset-0 bg-black-a-30" />
 
-          <div className="absolute inset-0 flex items-end justify-center p-6 md:p-10">
+          <div className="absolute inset-0 flex items-end justify-center p-6 md:p-12 text-center">
             <h1
-              className="text-4xl md:text-6xl font-bold tracking-tight text-center"
+              className="text-5xl md:text-7xl font-bold tracking-tight"
               style={{ color: '#ffffff' }}
             >
-              About Us
+              About HighSkul Creatives
             </h1>
           </div>
         </section>
 
-        <div className="max-w-3xl mx-auto text-center">
-          {/* Intro */}
-          <section className="mb-14">
-            <p className="text-2xl md:text-3xl leading-relaxed font-medium tracking-tight">
-              HighSkul Creatives is where student life meets the wider world.
+        {/* Intro */}
+        <section className="max-w-4xl mx-auto text-center mb-24">
+          <p className="text-3xl md:text-5xl leading-tight font-medium tracking-tight">
+            HighSkul Creatives is where student life meets the wider world.
+          </p>
+
+          <p className="mt-10 text-lg md:text-xl leading-8">
+            We cover the stories, conversations, ideas and opportunities
+            shaping young people, from education and campus life to culture,
+            sport, careers and beyond.
+          </p>
+        </section>
+
+        {/* Why HighSkul Creatives? */}
+        <section className="max-w-3xl mx-auto text-center mb-20">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-8">
+            Why HighSkul Creatives?
+          </h2>
+
+          <div className="space-y-6 text-base md:text-lg leading-8">
+            <p>
+              Young people are constantly creating, questioning, competing,
+              learning and figuring out what comes next. There is no shortage
+              of stories around student life, but too often those stories are
+              treated as an afterthought.
             </p>
 
-            <p className="mt-6 text-lg md:text-xl leading-relaxed text-primary-70">
-              We cover the stories, conversations, ideas and opportunities
-              shaping young people, from education and campus life to culture,
-              sport, careers and beyond.
+            <p>
+              HighSkul Creatives exists to give those stories the attention
+              they deserve.
             </p>
-          </section>
 
-          {/* Why HighSkul Creatives */}
-          <section className="mb-14">
-            <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
-              Why HighSkul Creatives?
-            </h2>
-
-            <div className="space-y-5 text-base md:text-lg leading-8">
-              <p>
-                Young people have plenty to say, but too often the conversations
-                happening around them are told without them. HighSkul Creatives
-                exists to change that.
-              </p>
-
-              <p>
-                We want to create a space where student experiences are taken
-                seriously, emerging voices can find an audience and the things
-                young people care about are given room to breathe.
-              </p>
-
-              <p>
-                That means more than reporting what happened. It means asking
-                questions, finding the people behind the stories and making room
-                for different perspectives.
-              </p>
-            </div>
-          </section>
-
-          {/* Image 2 - St. Louis SHS */}
-          <div className="mb-14">
-            <ImageBreak
-              src="https://stlouisshs.edu.gh/wp-content/uploads/2022/03/student1-768x768.jpeg"
-              alt="Students of St. Louis Senior High School in Kumasi"
-              tall
-            />
+            <p>
+              We want to create a publication that feels relevant to the
+              people actually living these experiences while still being
+              interesting to anyone who wants to understand the generation
+              shaping what comes next.
+            </p>
           </div>
+        </section>
 
-          {/* What We Cover */}
-          <section className="mb-14">
-            <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
-              What We Cover
-            </h2>
+        {/* Image */}
+        <ImageBreak
+          src="https://stlouisshs.edu.gh/wp-content/uploads/2022/03/student1-768x768.jpeg"
+          alt="Students at St. Louis Senior High School in Kumasi"
+          tall
+        />
 
-            <div className="space-y-6 text-base md:text-lg leading-8">
-              <p>
-                HighSkul Creatives is built around the different parts of young
-                life that deserve attention.
-              </p>
+        {/* What We Cover */}
+        <section className="max-w-3xl mx-auto text-center my-24">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-8">
+            What We Cover
+          </h2>
 
-              <div>
-                <h3 className="font-bold text-lg md:text-xl">News</h3>
-                <p>
-                  The people, events and developments that matter to students
-                  and young communities.
-                </p>
-              </div>
+          <div className="space-y-6 text-base md:text-lg leading-8">
+            <p>
+              HighSkul Creatives covers the parts of young life that deserve
+              more than a passing mention.
+            </p>
 
-              <div>
-                <h3 className="font-bold text-lg md:text-xl">Academics</h3>
-                <p>
-                  Education, learning, school life and the issues shaping the
-                  way students study and prepare for the future.
-                </p>
-              </div>
+            <p>
+              That includes news and education, student life, arts and
+              entertainment, sport, careers and opportunities, opinion and the
+              conversations happening around schools and communities.
+            </p>
 
-              <div>
-                <h3 className="font-bold text-lg md:text-xl">Student Life</h3>
-                <p>
-                  The everyday experiences, challenges, relationships,
-                  conversations and moments that make up student life.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-bold text-lg md:text-xl">
-                  Arts &amp; Entertainment
-                </h3>
-                <p>
-                  Music, film, art, creativity, pop culture and the people
-                  making things worth paying attention to.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-bold text-lg md:text-xl">Sports</h3>
-                <p>
-                  The athletes, teams, competitions and stories connecting young
-                  people through sport.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-bold text-lg md:text-xl">
-                  Career &amp; Opportunities
-                </h3>
-                <p>
-                  Internships, jobs, scholarships, programmes, skills and
-                  practical opportunities that can help young people move
-                  forward.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-bold text-lg md:text-xl">Opinion</h3>
-                <p>
-                  Personal perspectives, arguments and conversations about the
-                  issues that young people are thinking and talking about.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* Image 3 - Ideal College */}
-          <div className="mb-14">
-            <ImageBreak
-              src="https://idealcollegeonline.org/wp-content/uploads/2021/12/event2.jpg"
-              alt="Students at Ideal College"
-            />
+            <p>
+              Some stories are serious. Some are creative. Some are simply
+              about something interesting happening around young people. The
+              common thread is relevance.
+            </p>
           </div>
+        </section>
 
-          {/* How We Choose Stories */}
-          <section className="mb-14">
-            <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
-              How We Choose Stories
-            </h2>
+        {/* Image */}
+        <ImageBreak
+          src="https://idealcollegeonline.org/wp-content/uploads/2021/12/event2.jpg"
+          alt="Students at Ideal College"
+        />
 
-            <div className="space-y-5 text-base md:text-lg leading-8">
-              <p>
-                Not every story has to be breaking news to matter. We look for
-                stories that are useful, interesting, timely, overlooked or
-                simply worth a conversation.
-              </p>
+        {/* How We Choose Stories */}
+        <section className="max-w-3xl mx-auto text-center my-24">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-8">
+            How We Choose Stories
+          </h2>
 
-              <p>
-                Sometimes that means covering something happening on a campus.
-                Sometimes it means speaking to a student with an unusual
-                experience, highlighting an emerging creative or breaking down
-                an opportunity that students might otherwise miss.
-              </p>
+          <div className="space-y-6 text-base md:text-lg leading-8">
+            <p>
+              We look for stories that are useful, interesting, timely,
+              thought-provoking or simply worth knowing about.
+            </p>
 
-              <p>
-                We are interested in the big picture, but we also care about the
-                small details that make a story feel real.
-              </p>
-            </div>
-          </section>
+            <p>
+              We pay attention to what students are talking about, what is
+              happening in schools and communities, what young people are
+              creating and the opportunities that could make a difference.
+            </p>
 
-          {/* Our Editorial Approach */}
-          <section className="mb-14">
-            <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
-              Our Editorial Approach
-            </h2>
-
-            <div className="space-y-5 text-base md:text-lg leading-8">
-              <p>
-                We believe young audiences deserve journalism that respects
-                their intelligence. We aim to be clear, accurate and fair while
-                keeping our writing accessible and engaging.
-              </p>
-
-              <p>
-                We distinguish reporting from opinion and do our best to verify
-                information before publishing. When a story involves
-                allegations, disputed claims or information that cannot be
-                independently confirmed, we treat that distinction seriously.
-              </p>
-
-              <p>
-                We also believe there is room for personality. HighSkul
-                Creatives does not have to sound like a textbook or a government
-                press release. Our stories can have energy, character and a
-                distinctly young voice without sacrificing accuracy.
-              </p>
-            </div>
-          </section>
-
-          {/* Image 4 - DPS International Ghana */}
-          <div className="mb-14">
-            <ImageBreak
-              src="https://dpsghana.edu.gh/assets/images/about-dps-ghana-committed-to-the-excellance-3.png"
-              alt="Students learning together at DPS International Ghana"
-            />
+            <p>
+              A story does not have to be huge to matter. Sometimes the most
+              interesting stories are the ones happening right around us.
+            </p>
           </div>
+        </section>
 
-          {/* Who We Write For */}
-          <section className="mb-14">
-            <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
-              Who We Write For
-            </h2>
+        {/* Our Editorial Approach */}
+        <section className="max-w-3xl mx-auto text-center mb-20">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-8">
+            Our Editorial Approach
+          </h2>
 
-            <div className="space-y-5 text-base md:text-lg leading-8">
-              <p>
-                HighSkul Creatives is primarily for students and young people,
-                but our stories are not limited to them.
-              </p>
+          <div className="space-y-6 text-base md:text-lg leading-8">
+            <p>
+              We want HighSkul Creatives to feel young without feeling careless.
+            </p>
 
-              <p>
-                We write for anyone interested in what young people are doing,
-                experiencing and building. That includes students, educators,
-                creatives, professionals, parents and anyone who wants to
-                understand the generation coming up behind them.
-              </p>
-            </div>
-          </section>
+            <p>
+              Our stories should be engaging and accessible while still taking
+              facts, context and the people involved seriously.
+            </p>
 
-          {/* Our Contributors */}
-          <section className="mb-14">
-            <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
-              Our Contributors
-            </h2>
-
-            <div className="space-y-5 text-base md:text-lg leading-8">
-              <p>
-                HighSkul Creatives is not just built by one newsroom. We want to
-                make room for writers, student reporters, photographers,
-                editors, illustrators, creatives and other contributors with
-                something worth bringing to the table.
-              </p>
-
-              <p>
-                Different people see different things. Bringing those
-                perspectives together makes the publication stronger.
-              </p>
-            </div>
-          </section>
-
-          {/* Image 5 - African Science Academy Robotics */}
-          <div className="mb-14">
-            <ImageBreak
-              src="https://media.licdn.com/dms/image/v2/D5622AQF6jYw4y7Q5Qw/feedshare-shrink_800/B4DZg0h7cKHEAg-/0/1750076845015?e=2147483647&v=beta&t=8p6yM5mP8z9m2ZqJfH6xwR3gkN1aY2sQ4cV7bL0dX5Q"
-              alt="Students at African Science Academy working on robotics"
-              tall
-            />
+            <p>
+              We aim to give people room to express different perspectives,
+              clearly distinguish reporting from opinion and correct mistakes
+              when they happen.
+            </p>
           </div>
+        </section>
 
-          {/* Corrections & Updates */}
-          <section className="mb-14">
-            <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
-              Corrections &amp; Updates
-            </h2>
+        {/* Image */}
+        <ImageBreak
+          src="https://dpsghana.edu.gh/assets/images/about-dps-ghana-committed-to-the-excellance-3.png"
+          alt="Students at DPS International Ghana"
+          tall
+        />
 
-            <div className="space-y-5 text-base md:text-lg leading-8">
-              <p>
-                We take accuracy seriously. If we publish an error, we aim to
-                correct it clearly rather than quietly changing the record.
-              </p>
+        {/* Who We Write For */}
+        <section className="max-w-3xl mx-auto text-center my-24">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-8">
+            Who We Write For
+          </h2>
 
-              <p>
-                If you spot an error or have information that could materially
-                improve one of our stories, please let us know through our
-                Contact page.
-              </p>
-            </div>
-          </section>
+          <div className="space-y-6 text-base md:text-lg leading-8">
+            <p>
+              HighSkul Creatives is primarily for young people navigating
+              school, education, creativity, friendships, ambitions and the
+              question of what comes next.
+            </p>
 
-          {/* Be Part of HighSkul Creatives */}
-          <section className="mb-6">
-            <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
-              Be Part of HighSkul Creatives
-            </h2>
+            <p>
+              But you do not have to be a student to find something here.
+              Parents, educators, professionals, creators and anyone curious
+              about young people are welcome.
+            </p>
+          </div>
+        </section>
 
-            <div className="space-y-5 text-base md:text-lg leading-8">
-              <p>
-                Have a story? An idea? An opinion? An opportunity students
-                should know about? Or something you think we should be paying
-                attention to?
-              </p>
+        {/* Our Contributors */}
+        <section className="max-w-3xl mx-auto text-center mb-20">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-8">
+            Our Contributors
+          </h2>
 
-              <p>
-                Tell us. HighSkul Creatives is a publication about young people,
-                but it is also a space for young people to participate in the
-                conversation.
-              </p>
-            </div>
-          </section>
-        </div>
+          <div className="space-y-6 text-base md:text-lg leading-8">
+            <p>
+              HighSkul Creatives is built around young voices.
+            </p>
+
+            <p>
+              Our contributors can include writers, student reporters,
+              photographers, editors, illustrators and other young creatives
+              who have something to say or show.
+            </p>
+
+            <p>
+              We believe the people experiencing these stories should have a
+              place in telling them.
+            </p>
+          </div>
+        </section>
+
+        {/* Image */}
+        <ImageBreak
+          src="https://images.squarespace-cdn.com/content/v1/5f97f1016ace3749ed3dc1fb/42ecefb8-788c-4f6e-bf7d-5095a19b5d17/1V6A0003.jpg"
+          alt="Students working on creative projects at African Science Academy"
+          tall
+        />
+
+        {/* Corrections & Updates */}
+        <section className="max-w-3xl mx-auto text-center my-24">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-8">
+            Corrections &amp; Updates
+          </h2>
+
+          <div className="space-y-6 text-base md:text-lg leading-8">
+            <p>
+              Accuracy matters to us. If we publish something that is
+              inaccurate or incomplete, we want to know about it.
+            </p>
+
+            <p>
+              When a correction or significant update is necessary, we will
+              make the appropriate change and, where necessary, explain what
+              was changed.
+            </p>
+
+            <p>
+              If you spot an error in something we have published, please
+              contact us with the relevant article and the information that
+              needs correcting.
+            </p>
+          </div>
+        </section>
+
+        {/* Be Part of HighSkul Creatives */}
+        <section className="max-w-4xl mx-auto text-center mt-24 mb-12">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-8">
+            Be Part of HighSkul Creatives
+          </h2>
+
+          <div className="space-y-6 text-base md:text-lg leading-8">
+            <p>
+              Have a story to tell, an idea to pitch or something you think
+              young people should know about?
+            </p>
+
+            <p>
+              HighSkul Creatives is always looking for new voices, ideas and
+              perspectives.
+            </p>
+
+            <p className="font-medium">
+              If you think there is a story there, start the conversation.
+            </p>
+          </div>
+        </section>
       </article>
     </Layout>
   )
