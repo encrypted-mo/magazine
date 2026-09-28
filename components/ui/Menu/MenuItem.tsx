@@ -27,7 +27,7 @@ const MenuItem = ({
 }: Props) => {
   const { toggle } = useMenuContext()
 
-  const handleButtonClick = (e: MouseEvent) => {
+  const handleClick = (e: MouseEvent) => {
     onClick?.(e)
     toggle()
   }
@@ -48,7 +48,9 @@ const MenuItem = ({
     } else {
       content = (
         <Link href={href}>
-          <a className={s.itemContent}>{children}</a>
+          <a className={s.itemContent} onClick={handleClick}>
+            {children}
+          </a>
         </Link>
       )
     }
@@ -56,7 +58,7 @@ const MenuItem = ({
     content = (
       <button
         type="button"
-        onClick={handleButtonClick}
+        onClick={handleClick}
         className={s.itemContent}
         {...rest}
       >
