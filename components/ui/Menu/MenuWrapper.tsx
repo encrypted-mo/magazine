@@ -14,6 +14,14 @@ const MenuWrapper = ({ children }: { children: React.ReactNode }) => {
     if (!isVisible) return
 
     const onOutsideClick = (e: any) => {
+      const target = e.target as Element | null
+
+      // The menu content is rendered in a Portal, outside this wrapper's DOM,
+      // so clicks inside it must not count as "outside" clicks.
+      if (target && target.closest && target.closest('[data-menu-content]')) {
+        return
+      }
+
       if (
         menuWrapperRef.current &&
         !menuWrapperRef.current.contains(e.target)
