@@ -14,7 +14,10 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-black-a-40" />
 
           <div className="absolute inset-0 flex items-end p-6 md:p-10">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white">
+            <h1
+              className="text-4xl md:text-6xl font-bold tracking-tight"
+              style={{ color: '#ffffff' }}
+            >
               About Us
             </h1>
           </div>
