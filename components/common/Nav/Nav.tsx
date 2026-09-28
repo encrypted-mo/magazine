@@ -2,7 +2,12 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import cn from 'classnames'
 import { useHideOnScroll } from '@lib/hooks/use-hide-on-scroll'
-import { MenuWrapper, Menu, MenuButton, MenuItem } from '@components/ui/Menu'
+import {
+  MenuWrapper,
+  Menu,
+  MenuButton,
+  MenuItem,
+} from '@components/ui/Menu'
 import More from '@components/icons/More'
 
 const Nav = ({ categories }: { categories: TCategory[] }) => {
@@ -14,13 +19,9 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
   )
 
   const navLinkClass =
-    'relative uppercase py-3 px-4 text-xs font-bold tracking-wide text-primary-90 transition-opacity hover:opacity-70'
+    'relative flex items-center uppercase py-3 px-4 text-xs font-bold tracking-wide text-primary-90 transition-opacity hover:opacity-70'
 
-  const isCategoryActive = (slug: string) =>
-    router.query.slug === slug
-
-  const isCombinedActive = (slugs: string[]) =>
-    slugs.includes(router.query.slug as string)
+  const isActive = (slug: string) => router.query.slug === slug
 
   return (
     <nav
@@ -35,7 +36,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
       <Link href="/">
         <a
           className={cn(
-            'relative uppercase px-5 py-3 text-xs font-bold tracking-wide text-primary-90',
+            navLinkClass,
             router.pathname === '/' && 'border-b-2 border-primary'
           )}
         >
@@ -49,7 +50,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
           <a
             className={cn(
               navLinkClass,
-              isCategoryActive('news') && 'border-b-2 border-primary'
+              isActive('news') && 'border-b-2 border-primary'
             )}
           >
             News
@@ -57,16 +58,16 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
         </Link>
       )}
 
-      {/* Education */}
-      {categoryMap.education && (
-        <Link href="/education">
+      {/* Academics */}
+      {categoryMap.academics && (
+        <Link href="/academics">
           <a
             className={cn(
               navLinkClass,
-              isCategoryActive('education') && 'border-b-2 border-primary'
+              isActive('academics') && 'border-b-2 border-primary'
             )}
           >
-            Education
+            Academics
           </a>
         </Link>
       )}
@@ -77,8 +78,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
           <a
             className={cn(
               navLinkClass,
-              isCategoryActive('student-life') &&
-                'border-b-2 border-primary'
+              isActive('student-life') && 'border-b-2 border-primary'
             )}
           >
             Student Life
@@ -87,40 +87,18 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
       )}
 
       {/* Arts & Entertainment */}
-      {(categoryMap.culture || categoryMap.features) && (
-        <MenuWrapper>
-          <MenuButton ariaLabel="Arts and Entertainment navigation">
-            <span
-              className={cn(
-                navLinkClass,
-                isCombinedActive(['culture', 'features']) &&
-                  'border-b-2 border-primary'
-              )}
-            >
-              Arts & Entertainment
-            </span>
-          </MenuButton>
-
-          <Menu title="Arts & Entertainment">
-            {categoryMap.culture && (
-              <MenuItem
-                href="/culture"
-                active={isCategoryActive('culture')}
-              >
-                Culture
-              </MenuItem>
+      {categoryMap['arts-entertainment'] && (
+        <Link href="/arts-entertainment">
+          <a
+            className={cn(
+              navLinkClass,
+              isActive('arts-entertainment') &&
+                'border-b-2 border-primary'
             )}
-
-            {categoryMap.features && (
-              <MenuItem
-                href="/features"
-                active={isCategoryActive('features')}
-              >
-                Features
-              </MenuItem>
-            )}
-          </Menu>
-        </MenuWrapper>
+          >
+            Arts &amp; Entertainment
+          </a>
+        </Link>
       )}
 
       {/* Sports */}
@@ -129,7 +107,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
           <a
             className={cn(
               navLinkClass,
-              isCategoryActive('sports') && 'border-b-2 border-primary'
+              isActive('sports') && 'border-b-2 border-primary'
             )}
           >
             Sports
@@ -138,48 +116,37 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
       )}
 
       {/* Career & Opportunities */}
-      {(categoryMap.career || categoryMap.opportunities) && (
-        <MenuWrapper>
-          <MenuButton ariaLabel="Career and Opportunities navigation">
-            <span
-              className={cn(
-                navLinkClass,
-                isCombinedActive(['career', 'opportunities']) &&
-                  'border-b-2 border-primary'
-              )}
-            >
-              Career & Opportunities
-            </span>
-          </MenuButton>
-
-          <Menu title="Career & Opportunities">
-            {categoryMap.career && (
-              <MenuItem
-                href="/career"
-                active={isCategoryActive('career')}
-              >
-                Career
-              </MenuItem>
+      {categoryMap['career-opportunities'] && (
+        <Link href="/career-opportunities">
+          <a
+            className={cn(
+              navLinkClass,
+              isActive('career-opportunities') &&
+                'border-b-2 border-primary'
             )}
-
-            {categoryMap.opportunities && (
-              <MenuItem
-                href="/opportunities"
-                active={isCategoryActive('opportunities')}
-              >
-                Opportunities
-              </MenuItem>
-            )}
-          </Menu>
-        </MenuWrapper>
+          >
+            Career &amp; Opportunities
+          </a>
+        </Link>
       )}
 
       {/* More */}
       <MenuWrapper>
         <MenuButton ariaLabel="More navigation">
-          <span className="flex items-center gap-1 uppercase py-3 px-4 text-xs font-bold tracking-wide text-primary-90 hover:opacity-70">
-            <More />
+          <span
+            className={cn(
+              navLinkClass,
+              'gap-1',
+              router.pathname === '/opinion' ||
+                router.pathname === '/events' ||
+                router.pathname === '/contributors' ||
+                router.pathname === '/pages/about'
+                ? 'border-b-2 border-primary'
+                : ''
+            )}
+          >
             More
+            <More />
           </span>
         </MenuButton>
 
@@ -187,7 +154,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
           {categoryMap.opinion && (
             <MenuItem
               href="/opinion"
-              active={isCategoryActive('opinion')}
+              active={isActive('opinion')}
             >
               Opinion
             </MenuItem>
@@ -212,6 +179,10 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
             active={router.pathname === '/pages/about'}
           >
             About
+          </MenuItem>
+
+          <MenuItem href="mailto:hiskulcreatives@gmail.com" external>
+            Contact
           </MenuItem>
         </Menu>
       </MenuWrapper>
