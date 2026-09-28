@@ -66,7 +66,7 @@ const Footer = () => {
           <ul className={s.ul}>
             <li>
               <Link href="/pages/about">
-                <a className={s.link}>About HighSkul</a>
+                <a className={s.link}>About Us</a>
               </Link>
             </li>
 
