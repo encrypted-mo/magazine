@@ -6,16 +6,16 @@ export default function AboutPage() {
       <article className="max-w-5xl mx-auto">
         <section className="relative h-72 md:h-96 overflow-hidden rounded-2xl mb-14">
           <img
-            src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Vue_partielle_de_Achimota_school,_Accra.jpg"
-            alt="Achimota School campus in Accra, Ghana"
+            src="https://i0.wp.com/gis.edu.gh/wp-content/uploads/2025/10/DSC07607-scaled.jpg?resize=1600%2C1067&ssl=1"
+            alt="Students at Ghana International School"
             className="absolute inset-0 w-full h-full object-cover"
           />
 
           <div className="absolute inset-0 bg-black-a-40" />
 
-          <div className="absolute inset-0 flex items-end p-6 md:p-10">
+          <div className="absolute inset-0 flex items-end justify-center p-6 md:p-10">
             <h1
-              className="text-4xl md:text-6xl font-bold tracking-tight"
+              className="text-4xl md:text-6xl font-bold tracking-tight text-center"
               style={{ color: '#ffffff' }}
             >
               About Us
@@ -23,7 +23,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto text-center">
           <section className="mb-14">
             <p className="text-2xl md:text-3xl leading-relaxed font-medium tracking-tight">
               HighSkul Creatives is where student life meets the wider world.
@@ -60,14 +60,6 @@ export default function AboutPage() {
                 for different perspectives.
               </p>
             </div>
-          </section>
-
-          <section className="mb-14">
-            <img
-              src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Students_of_KNUST_Senior_High_school.jpg"
-              alt="Students of KNUST Senior High School taking part in STEM activities"
-              className="w-full h-64 md:h-80 object-cover rounded-2xl"
-            />
           </section>
 
           <section className="mb-14">
@@ -142,14 +134,6 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-          </section>
-
-          <section className="mb-14">
-            <img
-              src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Ghana_Senior_High_School_Students.jpg"
-              alt="Ghanaian Senior High School students"
-              className="w-full h-64 md:h-80 object-cover rounded-2xl"
-            />
           </section>
 
           <section className="mb-14">
