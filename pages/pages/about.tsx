@@ -92,11 +92,11 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Image 2 */}
+          {/* Image 2 - St. Louis SHS */}
           <div className="mb-14">
             <ImageBreak
-              src="https://commons.wikimedia.org/wiki/Special:FilePath/Students_reading_in_a_classroom_02.jpg"
-              alt="Students reading together in a classroom in Ghana"
+              src="https://stlouisshs.edu.gh/wp-content/uploads/2022/03/student1-768x768.jpeg"
+              alt="Students of St. Louis Senior High School in Kumasi"
               tall
             />
           </div>
@@ -176,11 +176,11 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Image 3 */}
+          {/* Image 3 - Ideal College */}
           <div className="mb-14">
             <ImageBreak
-              src="https://commons.wikimedia.org/wiki/Special:FilePath/Young_students.jpg"
-              alt="Young students walking together in Nyankpala, Ghana"
+              src="https://idealcollegeonline.org/wp-content/uploads/2021/12/event2.jpg"
+              alt="Students at Ideal College"
             />
           </div>
 
@@ -240,11 +240,11 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Image 4 */}
+          {/* Image 4 - DPS International Ghana */}
           <div className="mb-14">
             <ImageBreak
-              src="https://commons.wikimedia.org/wiki/Special:FilePath/Students_in_class.jpg"
-              alt="Nursing students in a classroom at Kumasi Nursing and Midwifery Training College"
+              src="https://dpsghana.edu.gh/assets/images/about-dps-ghana-committed-to-the-excellance-3.png"
+              alt="Students learning together at DPS International Ghana"
             />
           </div>
 
@@ -290,11 +290,11 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Image 5 */}
+          {/* Image 5 - African Science Academy Robotics */}
           <div className="mb-14">
             <ImageBreak
-              src="https://commons.wikimedia.org/wiki/Special:FilePath/Ghana_Senior_High_School_Students.jpg"
-              alt="Ghanaian senior high school students celebrating together"
+              src="https://media.licdn.com/dms/image/v2/D5622AQF6jYw4y7Q5Qw/feedshare-shrink_800/B4DZg0h7cKHEAg-/0/1750076845015?e=2147483647&v=beta&t=8p6yM5mP8z9m2ZqJfH6xwR3gkN1aY2sQ4cV7bL0dX5Q"
+              alt="Students at African Science Academy working on robotics"
               tall
             />
           </div>
