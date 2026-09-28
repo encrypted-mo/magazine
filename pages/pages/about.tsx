@@ -6,8 +6,8 @@ export default function AboutPage() {
       <article className="max-w-5xl mx-auto">
         <section className="relative h-72 md:h-96 overflow-hidden rounded-2xl mb-14">
           <img
-            src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Ghana_school_students_and_teachers.jpg"
-            alt=""
+            src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Vue_partielle_de_Achimota_school,_Accra.jpg"
+            alt="Achimota School campus in Accra, Ghana"
             className="absolute inset-0 w-full h-full object-cover"
           />
 
@@ -38,14 +38,14 @@ export default function AboutPage() {
 
           <section className="mb-14">
             <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
-              Why HighSkul?
+              Why HighSkul Creatives?
             </h2>
 
             <div className="space-y-5 text-base md:text-lg leading-8">
               <p>
                 Young people have plenty to say, but too often the conversations
-                happening around them are told without them. HighSkul Creatives exists to
-                change that.
+                happening around them are told without them. HighSkul Creatives exists
+                to change that.
               </p>
 
               <p>
@@ -63,14 +63,22 @@ export default function AboutPage() {
           </section>
 
           <section className="mb-14">
+            <img
+              src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Students_of_KNUST_Senior_High_school.jpg"
+              alt="Students of KNUST Senior High School taking part in STEM activities"
+              className="w-full h-64 md:h-80 object-cover rounded-2xl"
+            />
+          </section>
+
+          <section className="mb-14">
             <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
               What We Cover
             </h2>
 
             <div className="space-y-6 text-base md:text-lg leading-8">
               <p>
-                HighSkul Creatives is built around the different parts of young life that
-                deserve attention.
+                HighSkul Creatives is built around the different parts of young life
+                that deserve attention.
               </p>
 
               <div>
@@ -137,6 +145,14 @@ export default function AboutPage() {
           </section>
 
           <section className="mb-14">
+            <img
+              src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Ghana_Senior_High_School_Students.jpg"
+              alt="Ghanaian Senior High School students"
+              className="w-full h-64 md:h-80 object-cover rounded-2xl"
+            />
+          </section>
+
+          <section className="mb-14">
             <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
               How We Choose Stories
             </h2>
@@ -197,8 +213,8 @@ export default function AboutPage() {
 
             <div className="space-y-5 text-base md:text-lg leading-8">
               <p>
-                HighSkul Creatives is primarily for students and young people, but our
-                stories are not limited to them.
+                HighSkul Creatives is primarily for students and young people, but
+                our stories are not limited to them.
               </p>
 
               <p>
@@ -217,8 +233,8 @@ export default function AboutPage() {
 
             <div className="space-y-5 text-base md:text-lg leading-8">
               <p>
-                HighSkul Creatives is not just built by one newsroom. We want to make room
-                for writers, student reporters, photographers, editors,
+                HighSkul Creatives is not just built by one newsroom. We want to make
+                room for writers, student reporters, photographers, editors,
                 illustrators, creatives and other contributors with something
                 worth bringing to the table.
               </p>
@@ -262,8 +278,8 @@ export default function AboutPage() {
               </p>
 
               <p>
-                Tell us. HighSkul Creatives is a publication about young people, but it
-                is also a space for young people to participate in the
+                Tell us. HighSkul Creatives is a publication about young people,
+                but it is also a space for young people to participate in the
                 conversation.
               </p>
             </div>
