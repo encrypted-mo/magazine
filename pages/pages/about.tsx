@@ -1,17 +1,45 @@
 import { Layout } from '@components/common/Layout'
 
+const ImageBreak = ({
+  src,
+  alt,
+  tall = false,
+}: {
+  src: string
+  alt: string
+  tall?: boolean
+}) => {
+  return (
+    <div
+      className={`relative overflow-hidden rounded-2xl ${
+        tall ? 'h-80 md:h-[520px]' : 'h-64 md:h-96'
+      }`}
+    >
+      <img
+        src={src}
+        alt={alt}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+    </div>
+  )
+}
+
 export default function AboutPage() {
   return (
     <Layout>
       <article className="max-w-5xl mx-auto">
+        {/* Hero */}
         <section className="relative h-72 md:h-96 overflow-hidden rounded-2xl mb-14">
           <img
-            src="https://i0.wp.com/gis.edu.gh/wp-content/uploads/2025/10/DSC07607-scaled.jpg?resize=1600%2C1067&ssl=1"
-            alt="Students at Ghana International School"
+            src="https://cdn.modernghana.com/story_/926/499/2102019110643_m6itl8w331_6034305772744_6903731568302.png"
+            alt="Students from international schools gathered at a student-led conference in Ghana"
             className="absolute inset-0 w-full h-full object-cover"
           />
 
-          <div className="absolute inset-0 bg-black-a-40" />
+          <div
+            className="absolute inset-0"
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.35)' }}
+          />
 
           <div className="absolute inset-0 flex items-end justify-center p-6 md:p-10">
             <h1
@@ -24,6 +52,7 @@ export default function AboutPage() {
         </section>
 
         <div className="max-w-3xl mx-auto text-center">
+          {/* Intro */}
           <section className="mb-14">
             <p className="text-2xl md:text-3xl leading-relaxed font-medium tracking-tight">
               HighSkul Creatives is where student life meets the wider world.
@@ -36,6 +65,7 @@ export default function AboutPage() {
             </p>
           </section>
 
+          {/* Why HighSkul Creatives */}
           <section className="mb-14">
             <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
               Why HighSkul Creatives?
@@ -44,8 +74,8 @@ export default function AboutPage() {
             <div className="space-y-5 text-base md:text-lg leading-8">
               <p>
                 Young people have plenty to say, but too often the conversations
-                happening around them are told without them. HighSkul Creatives exists
-                to change that.
+                happening around them are told without them. HighSkul Creatives
+                exists to change that.
               </p>
 
               <p>
@@ -62,6 +92,16 @@ export default function AboutPage() {
             </div>
           </section>
 
+          {/* Image 2 */}
+          <div className="mb-14">
+            <ImageBreak
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/Students_reading_in_a_classroom_02.jpg"
+              alt="Students reading together in a classroom in Ghana"
+              tall
+            />
+          </div>
+
+          {/* What We Cover */}
           <section className="mb-14">
             <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
               What We Cover
@@ -69,8 +109,8 @@ export default function AboutPage() {
 
             <div className="space-y-6 text-base md:text-lg leading-8">
               <p>
-                HighSkul Creatives is built around the different parts of young life
-                that deserve attention.
+                HighSkul Creatives is built around the different parts of young
+                life that deserve attention.
               </p>
 
               <div>
@@ -136,6 +176,15 @@ export default function AboutPage() {
             </div>
           </section>
 
+          {/* Image 3 */}
+          <div className="mb-14">
+            <ImageBreak
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/Young_students.jpg"
+              alt="Young students walking together in Nyankpala, Ghana"
+            />
+          </div>
+
+          {/* How We Choose Stories */}
           <section className="mb-14">
             <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
               How We Choose Stories
@@ -162,6 +211,7 @@ export default function AboutPage() {
             </div>
           </section>
 
+          {/* Our Editorial Approach */}
           <section className="mb-14">
             <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
               Our Editorial Approach
@@ -182,14 +232,23 @@ export default function AboutPage() {
               </p>
 
               <p>
-                We also believe there is room for personality. HighSkul Creatives does
-                not have to sound like a textbook or a government press release.
-                Our stories can have energy, character and a distinctly young
-                voice without sacrificing accuracy.
+                We also believe there is room for personality. HighSkul
+                Creatives does not have to sound like a textbook or a government
+                press release. Our stories can have energy, character and a
+                distinctly young voice without sacrificing accuracy.
               </p>
             </div>
           </section>
 
+          {/* Image 4 */}
+          <div className="mb-14">
+            <ImageBreak
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/Students_in_class.jpg"
+              alt="Nursing students in a classroom at Kumasi Nursing and Midwifery Training College"
+            />
+          </div>
+
+          {/* Who We Write For */}
           <section className="mb-14">
             <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
               Who We Write For
@@ -197,8 +256,8 @@ export default function AboutPage() {
 
             <div className="space-y-5 text-base md:text-lg leading-8">
               <p>
-                HighSkul Creatives is primarily for students and young people, but
-                our stories are not limited to them.
+                HighSkul Creatives is primarily for students and young people,
+                but our stories are not limited to them.
               </p>
 
               <p>
@@ -210,6 +269,7 @@ export default function AboutPage() {
             </div>
           </section>
 
+          {/* Our Contributors */}
           <section className="mb-14">
             <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
               Our Contributors
@@ -217,10 +277,10 @@ export default function AboutPage() {
 
             <div className="space-y-5 text-base md:text-lg leading-8">
               <p>
-                HighSkul Creatives is not just built by one newsroom. We want to make
-                room for writers, student reporters, photographers, editors,
-                illustrators, creatives and other contributors with something
-                worth bringing to the table.
+                HighSkul Creatives is not just built by one newsroom. We want to
+                make room for writers, student reporters, photographers,
+                editors, illustrators, creatives and other contributors with
+                something worth bringing to the table.
               </p>
 
               <p>
@@ -230,6 +290,16 @@ export default function AboutPage() {
             </div>
           </section>
 
+          {/* Image 5 */}
+          <div className="mb-14">
+            <ImageBreak
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/Ghana_Senior_High_School_Students.jpg"
+              alt="Ghanaian senior high school students celebrating together"
+              tall
+            />
+          </div>
+
+          {/* Corrections & Updates */}
           <section className="mb-14">
             <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
               Corrections &amp; Updates
@@ -249,6 +319,7 @@ export default function AboutPage() {
             </div>
           </section>
 
+          {/* Be Part of HighSkul Creatives */}
           <section className="mb-6">
             <h2 className="mb-5 text-2xl md:text-3xl font-bold tracking-tight">
               Be Part of HighSkul Creatives
