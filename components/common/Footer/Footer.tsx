@@ -77,12 +77,9 @@ const Footer = () => {
             </li>
 
             <li>
-              <a
-                className={s.link}
-                href="mailto:hiskulcreatives@gmail.com"
-              >
-                Contact
-              </a>
+              <Link href="/pages/contact">
+                <a className={s.link}>Contact</a>
+              </Link>
             </li>
           </ul>
         </div>
