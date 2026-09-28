@@ -27,37 +27,48 @@ const MenuItem = ({
 }: Props) => {
   const { toggle } = useMenuContext()
 
-  const handleOnClick = (e: MouseEvent) => {
-    onClick && onClick(e)
+  const handleClick = (e: MouseEvent) => {
+    onClick?.(e)
     toggle()
   }
 
-  let Component: any
+  let content: React.ReactNode
 
   if (href) {
     if (external) {
-      Component = (
-        <ExternalLink to={href} ariaLabel="Link" className={s.itemContent}>
+      content = (
+        <ExternalLink
+          to={href}
+          ariaLabel="Link"
+          className={s.itemContent}
+        >
           {children}
         </ExternalLink>
       )
     } else {
-      Component = (
+      content = (
         <Link href={href}>
-          <a className={s.itemContent}>{children}</a>
+          <a className={s.itemContent} onClick={handleClick}>
+            {children}
+          </a>
         </Link>
       )
     }
   } else if (onClick) {
-    Component = (
-      <button onClick={handleOnClick} className={s.itemContent} {...rest}>
+    content = (
+      <button
+        type="button"
+        onClick={handleClick}
+        className={s.itemContent}
+        {...rest}
+      >
         {children}
       </button>
     )
   } else if (unstyled) {
-    Component = <>{children}</>
+    content = <>{children}</>
   } else {
-    Component = <span className={s.itemContent}>{children}</span>
+    content = <span className={s.itemContent}>{children}</span>
   }
 
   return (
@@ -65,12 +76,15 @@ const MenuItem = ({
       role="menuitem"
       tabIndex={-1}
       data-selected={active ? '' : undefined}
-      className={cn(s.menuItem, { [s.menuItemActive]: active })}
+      className={cn(s.menuItem, {
+        [s.menuItemActive]: active,
+      })}
     >
-      {Component}
+      {content}
 
       {subfix && <span className={s.subfix}>{subfix}</span>}
     </li>
   )
 }
+
 export default MenuItem
