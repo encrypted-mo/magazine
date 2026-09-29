@@ -201,10 +201,10 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
       </nav>
 
       <div
-        className="flex items-center justify-center border-b border-primary-20 px-4 py-2 bg-secondary"
+        className="flex items-center justify-end border-b border-primary-20 px-4 py-1 bg-secondary"
         aria-label="Local date and time"
       >
-        <span className="uppercase text-[10px] md:text-xs font-bold tracking-widest text-primary-60">
+        <span className="uppercase text-[9px] md:text-[10px] font-bold tracking-wider text-primary-60">
           {localDateTime}
         </span>
       </div>
