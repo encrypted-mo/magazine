@@ -28,7 +28,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
 
       const dateFormatter = new Intl.DateTimeFormat(undefined, {
         day: '2-digit',
-        month: 'long',
+        month: 'short',
         year: 'numeric',
       })
 
@@ -234,18 +234,18 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
       </nav>
 
       <div
-        className="flex flex-col items-end justify-center px-4 py-1 bg-secondary leading-none"
+        className="flex flex-col items-end justify-center px-3 py-0.5 bg-secondary leading-none"
         aria-label="Local date, time and location"
       >
-        <span className="uppercase text-[8px] font-medium tracking-wide text-primary-60">
+        <span className="uppercase text-[6px] font-medium tracking-normal text-primary-40">
           {localDate}
         </span>
 
-        <span className="uppercase text-[9px] font-bold tracking-wide text-primary-90 mt-0.5">
+        <span className="uppercase text-[7px] font-semibold tracking-normal text-primary-60 mt-px">
           {localTime}
         </span>
 
-        <span className="uppercase text-[7px] font-medium tracking-widest text-primary-40 mt-0.5">
+        <span className="uppercase text-[5px] font-medium tracking-wider text-primary-40 mt-px">
           {localLocation}
         </span>
       </div>
