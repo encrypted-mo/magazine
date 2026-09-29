@@ -38,8 +38,8 @@
   @apply h-11 w-auto;
 }
 
-[data-theme='dark'] .logo img {
-  filter: invert(1);
+[data-theme='dark'] .header {
+  background-color: var(--accent);
 }
 
 .actions {
