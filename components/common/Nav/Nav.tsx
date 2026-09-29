@@ -27,8 +27,9 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
       const now = new Date()
 
       const dateFormatter = new Intl.DateTimeFormat(undefined, {
+        weekday: 'long',
         day: '2-digit',
-        month: 'short',
+        month: 'long',
         year: 'numeric',
       })
 
@@ -41,25 +42,25 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
       const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
 
       const locationMap: Record<string, string> = {
-        'Africa/Accra': 'Ghana',
-        'Africa/Lagos': 'Nigeria',
-        'Africa/Abidjan': 'Côte d’Ivoire',
-        'Africa/Nairobi': 'Kenya',
-        'Africa/Cairo': 'Egypt',
-        'Africa/Johannesburg': 'South Africa',
-        'Europe/London': 'United Kingdom',
-        'Europe/Paris': 'France',
-        'Europe/Berlin': 'Germany',
-        'America/New_York': 'United States',
-        'America/Chicago': 'United States',
-        'America/Denver': 'United States',
-        'America/Los_Angeles': 'United States',
-        'America/Toronto': 'Canada',
-        'Asia/Tokyo': 'Japan',
-        'Asia/Shanghai': 'China',
-        'Asia/Kolkata': 'India',
-        'Asia/Dubai': 'United Arab Emirates',
-        'Australia/Sydney': 'Australia',
+        'Africa/Accra': 'Accra, Ghana',
+        'Africa/Lagos': 'Lagos, Nigeria',
+        'Africa/Abidjan': 'Abidjan, Côte d’Ivoire',
+        'Africa/Nairobi': 'Nairobi, Kenya',
+        'Africa/Cairo': 'Cairo, Egypt',
+        'Africa/Johannesburg': 'Johannesburg, South Africa',
+        'Europe/London': 'London, United Kingdom',
+        'Europe/Paris': 'Paris, France',
+        'Europe/Berlin': 'Berlin, Germany',
+        'America/New_York': 'New York, United States',
+        'America/Chicago': 'Chicago, United States',
+        'America/Denver': 'Denver, United States',
+        'America/Los_Angeles': 'Los Angeles, United States',
+        'America/Toronto': 'Toronto, Canada',
+        'Asia/Tokyo': 'Tokyo, Japan',
+        'Asia/Shanghai': 'Shanghai, China',
+        'Asia/Kolkata': 'Kolkata, India',
+        'Asia/Dubai': 'Dubai, United Arab Emirates',
+        'Australia/Sydney': 'Sydney, Australia',
       }
 
       setLocalDate(dateFormatter.format(now))
@@ -234,20 +235,31 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
       </nav>
 
       <div
-        className="flex flex-col items-end justify-center px-3 py-0.5 bg-secondary leading-none"
+        className="flex items-center justify-between px-2 py-0 bg-secondary leading-none"
         aria-label="Local date, time and location"
       >
-        <span className="uppercase text-[6px] font-medium tracking-normal text-primary-40">
-          {localDate}
-        </span>
-
-        <span className="uppercase text-[7px] font-semibold tracking-normal text-primary-60 mt-px">
-          {localTime}
-        </span>
-
-        <span className="uppercase text-[5px] font-medium tracking-wider text-primary-40 mt-px">
+        <span
+          className="uppercase font-medium tracking-wider text-primary-40"
+          style={{ fontSize: '4px' }}
+        >
           {localLocation}
         </span>
+
+        <div className="flex flex-col items-end">
+          <span
+            className="uppercase font-medium tracking-wide text-primary-40"
+            style={{ fontSize: '4px' }}
+          >
+            {localDate}
+          </span>
+
+          <span
+            className="uppercase font-semibold tracking-wide text-primary-60"
+            style={{ fontSize: '5px' }}
+          >
+            {localTime}
+          </span>
+        </div>
       </div>
     </>
   )
