@@ -48,7 +48,7 @@ sans-serif;
 --primary-10: var(--gray-90);
 --primary-05: var(--gray-95);
 --secondary: var(--black);
---accent: var(--gold-light);
+--accent: #A98224;
 }
 
 *,
