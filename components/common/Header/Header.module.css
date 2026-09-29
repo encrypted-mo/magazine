@@ -33,6 +33,13 @@
   background-color: var(--accent);
 }
 
+[data-theme='dark'] .header::after {
+  background: var(--secondary);
+  box-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.55),
+    0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
 .actions {
   @apply flex items-center gap-2;
 }
