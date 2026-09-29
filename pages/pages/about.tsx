@@ -176,11 +176,11 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Image 3 - Ideal College */}
+          {/* Image 3 - African Science Academy */}
           <div className="mb-14">
             <ImageBreak
-              src="https://idealcollegeonline.org/wp-content/uploads/2021/12/event2.jpg"
-              alt="Students at Ideal College"
+              src="https://www.africanscienceacademy.org/s/1V6A0006.jpg"
+              alt="Students at African Science Academy"
             />
           </div>
 
@@ -293,7 +293,7 @@ export default function AboutPage() {
           {/* Image 5 - African Science Academy Robotics */}
           <div className="mb-14">
             <ImageBreak
-              src="https://media.licdn.com/dms/image/v2/D5622AQF6jYw4y7Q5Qw/feedshare-shrink_800/B4DZg0h7cKHEAg-/0/1750076845015?e=2147483647&v=beta&t=8p6yM5mP8z9m2ZqJfH6xwR3gkN1aY2sQ4cV7bL0dX5Q"
+              src="https://www.africanscienceacademy.org/s/1V6A0003.jpg"
               alt="Students at African Science Academy working on robotics"
               tall
             />
