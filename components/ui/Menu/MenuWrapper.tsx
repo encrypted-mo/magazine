@@ -13,35 +13,36 @@ const MenuWrapper = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (!isVisible) return
 
-    const onOutsideClick = (e: any) => {
+    const onOutsideClick = (e: MouseEvent) => {
       const target = e.target as Element | null
 
-      // The menu content is rendered in a Portal, outside this wrapper's DOM,
-      // so clicks inside it must not count as "outside" clicks.
-      if (target && target.closest && target.closest('[data-menu-content]')) {
+      if (target?.closest?.('[data-menu-content]')) {
         return
       }
 
       if (
         menuWrapperRef.current &&
-        !menuWrapperRef.current.contains(e.target)
+        !menuWrapperRef.current.contains(e.target as Node)
       ) {
-        toggle()
+        setIsVisible(false)
       }
     }
 
     document.addEventListener('click', onOutsideClick)
-    document.addEventListener('touchstart', onOutsideClick)
+
     return () => {
       document.removeEventListener('click', onOutsideClick)
-      document.removeEventListener('touchstart', onOutsideClick)
     }
-  }, [isVisible, toggle])
+  }, [isVisible])
 
-  const value = useMemo(() => ({ isVisible, toggle, menuWrapperRef }), [
-    isVisible,
-    toggle,
-  ])
+  const value = useMemo(
+    () => ({
+      isVisible,
+      toggle,
+      menuWrapperRef,
+    }),
+    [isVisible, toggle]
+  )
 
   return (
     <MenuContext.Provider value={value}>
