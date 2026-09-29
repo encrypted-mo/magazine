@@ -9,20 +9,24 @@ import {
   MenuItem,
 } from '@components/ui/Menu'
 import More from '@components/icons/More'
-
 const Nav = ({ categories }: { categories: TCategory[] }) => {
   const router = useRouter()
   const { isHidden } = useHideOnScroll()
-
   const categoryMap = Object.fromEntries(
     categories.map((category) => [category.slug, category])
   )
-
   const navLinkClass =
     'relative flex items-center uppercase py-3 px-4 text-xs font-bold tracking-wide text-primary-90 transition-opacity hover:opacity-70'
-
   const isActive = (slug: string) => router.query.slug === slug
-
+  const moreIsActive =
+    router.pathname === '/opinion' ||
+    router.pathname === '/events' ||
+    router.pathname === '/contributors' ||
+    router.pathname === '/pages/about' ||
+    router.pathname === '/pages/contact' ||
+    router.query.slug === 'arts-and-entertainment' ||
+    router.query.slug === 'sports' ||
+    router.query.slug === 'career-and-opportunities'
   return (
     <nav
       aria-label="Categories Nav"
@@ -43,7 +47,6 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
           Home
         </a>
       </Link>
-
       {/* News */}
       {categoryMap.news && (
         <Link href="/news">
@@ -57,7 +60,6 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
           </a>
         </Link>
       )}
-
       {/* Academics */}
       {categoryMap.academics && (
         <Link href="/academics">
@@ -71,7 +73,6 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
           </a>
         </Link>
       )}
-
       {/* Student Life */}
       {categoryMap['student-life'] && (
         <Link href="/student-life">
@@ -85,51 +86,6 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
           </a>
         </Link>
       )}
-
-      {/* Arts & Entertainment */}
-      {categoryMap['arts-and-entertainment'] && (
-        <Link href="/arts-and-entertainment">
-          <a
-            className={cn(
-              navLinkClass,
-              isActive('arts-and-entertainment') &&
-                'border-b-2 border-primary'
-            )}
-          >
-            Arts &amp; Entertainment
-          </a>
-        </Link>
-      )}
-
-      {/* Sports */}
-      {categoryMap.sports && (
-        <Link href="/sports">
-          <a
-            className={cn(
-              navLinkClass,
-              isActive('sports') && 'border-b-2 border-primary'
-            )}
-          >
-            Sports
-          </a>
-        </Link>
-      )}
-
-      {/* Career & Opportunities */}
-      {categoryMap['career-and-opportunities'] && (
-        <Link href="/career-and-opportunities">
-          <a
-            className={cn(
-              navLinkClass,
-              isActive('career-and-opportunities') &&
-                'border-b-2 border-primary'
-            )}
-          >
-            Career &amp; Opportunities
-          </a>
-        </Link>
-      )}
-
       {/* More */}
       <MenuWrapper>
         <MenuButton ariaLabel="More navigation">
@@ -137,20 +93,38 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
             className={cn(
               navLinkClass,
               'gap-1',
-              (router.pathname === '/opinion' ||
-                router.pathname === '/events' ||
-                router.pathname === '/contributors' ||
-                router.pathname === '/pages/about' ||
-                router.pathname === '/pages/contact') &&
-                'border-b-2 border-primary'
+              moreIsActive && 'border-b-2 border-primary'
             )}
           >
             More
             <More />
           </span>
         </MenuButton>
-
         <Menu title="More">
+          {categoryMap['arts-and-entertainment'] && (
+            <MenuItem
+              href="/arts-and-entertainment"
+              active={isActive('arts-and-entertainment')}
+            >
+              Arts &amp; Entertainment
+            </MenuItem>
+          )}
+          {categoryMap.sports && (
+            <MenuItem
+              href="/sports"
+              active={isActive('sports')}
+            >
+              Sports
+            </MenuItem>
+          )}
+          {categoryMap['career-and-opportunities'] && (
+            <MenuItem
+              href="/career-and-opportunities"
+              active={isActive('career-and-opportunities')}
+            >
+              Career &amp; Opportunities
+            </MenuItem>
+          )}
           {categoryMap.opinion && (
             <MenuItem
               href="/opinion"
@@ -159,28 +133,24 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
               Opinion
             </MenuItem>
           )}
-
           <MenuItem
             href="/events"
             active={router.pathname === '/events'}
           >
             Events
           </MenuItem>
-
           <MenuItem
             href="/contributors"
             active={router.pathname === '/contributors'}
           >
             Contributors
           </MenuItem>
-
           <MenuItem
             href="/pages/about"
             active={router.pathname === '/pages/about'}
           >
             About Us
           </MenuItem>
-
           <MenuItem
             href="/pages/contact"
             active={router.pathname === '/pages/contact'}
@@ -192,5 +162,4 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
     </nav>
   )
 }
-
 export default Nav
