@@ -55,9 +55,13 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
         'Asia/Dubai': 'Dubai, United Arab Emirates',
         'Australia/Sydney': 'Sydney, Australia',
       }
+      const readableTimezone = timezone
+        .replace(/^Etc\/GMT/, 'GMT')
+        .replace(/\//g, ', ')
+        .replace(/_/g, ' ')
       setLocalDate(dateFormatter.format(now))
       setLocalTime(timeFormatter.format(now))
-      setLocalLocation(locationMap[timezone] || timezone.replace('_', ' '))
+      setLocalLocation(locationMap[timezone] || readableTimezone)
     }
     updateDateTime()
     const interval = window.setInterval(updateDateTime, 60000)
@@ -207,12 +211,12 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
         </MenuWrapper>
       </nav>
       <div
-        className="flex items-center justify-between px-2 py-0 bg-secondary leading-none"
+        className="sticky top-0 z-10 flex items-center justify-between px-2 py-0 bg-secondary leading-none"
         aria-label="Local date, time and location"
       >
         <span
           className="uppercase font-medium tracking-wider text-primary-40"
-          style={{ fontSize: '7px' }}
+          style={{ fontSize: '8px' }}
           aria-label={`Current location: ${localLocation}`}
         >
           {localLocation}
@@ -220,14 +224,14 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
         <div className="flex flex-col items-end">
           <span
             className="uppercase font-medium tracking-wide text-primary-40"
-            style={{ fontSize: '7px' }}
+            style={{ fontSize: '8px' }}
             aria-label={`Today's date: ${localDate}`}
           >
             {localDate}
           </span>
           <span
             className="uppercase font-semibold tracking-wide text-primary-60"
-            style={{ fontSize: '8px' }}
+            style={{ fontSize: '9px' }}
             aria-label={`Current local time: ${localTime}`}
             aria-live="polite"
             aria-atomic="true"
