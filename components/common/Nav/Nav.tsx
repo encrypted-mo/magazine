@@ -14,7 +14,9 @@ import More from '@components/icons/More'
 const Nav = ({ categories }: { categories: TCategory[] }) => {
   const router = useRouter()
   const { isHidden } = useHideOnScroll()
-  const [localDateTime, setLocalDateTime] = useState('')
+  const [localDate, setLocalDate] = useState('')
+  const [localTime, setLocalTime] = useState('')
+  const [localLocation, setLocalLocation] = useState('')
 
   const categoryMap = Object.fromEntries(
     categories.map((category) => [category.slug, category])
@@ -22,16 +24,47 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
 
   useEffect(() => {
     const updateDateTime = () => {
-      const formatter = new Intl.DateTimeFormat(undefined, {
+      const now = new Date()
+
+      const dateFormatter = new Intl.DateTimeFormat(undefined, {
         day: '2-digit',
         month: 'long',
         year: 'numeric',
+      })
+
+      const timeFormatter = new Intl.DateTimeFormat(undefined, {
         hour: 'numeric',
         minute: '2-digit',
         hour12: true,
       })
 
-      setLocalDateTime(formatter.format(new Date()))
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+
+      const locationMap: Record<string, string> = {
+        'Africa/Accra': 'Ghana',
+        'Africa/Lagos': 'Nigeria',
+        'Africa/Abidjan': 'Côte d’Ivoire',
+        'Africa/Nairobi': 'Kenya',
+        'Africa/Cairo': 'Egypt',
+        'Africa/Johannesburg': 'South Africa',
+        'Europe/London': 'United Kingdom',
+        'Europe/Paris': 'France',
+        'Europe/Berlin': 'Germany',
+        'America/New_York': 'United States',
+        'America/Chicago': 'United States',
+        'America/Denver': 'United States',
+        'America/Los_Angeles': 'United States',
+        'America/Toronto': 'Canada',
+        'Asia/Tokyo': 'Japan',
+        'Asia/Shanghai': 'China',
+        'Asia/Kolkata': 'India',
+        'Asia/Dubai': 'United Arab Emirates',
+        'Australia/Sydney': 'Australia',
+      }
+
+      setLocalDate(dateFormatter.format(now))
+      setLocalTime(timeFormatter.format(now))
+      setLocalLocation(locationMap[timezone] || timezone.replace('_', ' '))
     }
 
     updateDateTime()
@@ -201,11 +234,19 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
       </nav>
 
       <div
-        className="flex items-center justify-end px-4 py-0.5 bg-secondary"
-        aria-label="Local date and time"
+        className="flex flex-col items-end justify-center px-4 py-1 bg-secondary leading-none"
+        aria-label="Local date, time and location"
       >
-        <span className="uppercase text-[8px] md:text-[9px] font-medium tracking-wide text-primary-60">
-          {localDateTime}
+        <span className="uppercase text-[8px] font-medium tracking-wide text-primary-60">
+          {localDate}
+        </span>
+
+        <span className="uppercase text-[9px] font-bold tracking-wide text-primary-90 mt-0.5">
+          {localTime}
+        </span>
+
+        <span className="uppercase text-[7px] font-medium tracking-widest text-primary-40 mt-0.5">
+          {localLocation}
         </span>
       </div>
     </>
