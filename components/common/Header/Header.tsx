@@ -17,33 +17,9 @@ import {
 const Header = () => {
   const router = useRouter()
   const [showSearch, setShowSearch] = useState(false)
-  const [localDateTime, setLocalDateTime] = useState('')
   const isMobile = useIsMobile()
 
   const searchRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const updateDateTime = () => {
-      const formatter = new Intl.DateTimeFormat(undefined, {
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: '2-digit',
-        hour12: true,
-      })
-
-      setLocalDateTime(formatter.format(new Date()))
-    }
-
-    updateDateTime()
-
-    const interval = window.setInterval(updateDateTime, 60000)
-
-    return () => {
-      window.clearInterval(interval)
-    }
-  }, [])
 
   useEffect(() => {
     if (searchRef.current && isMobile) {
@@ -70,10 +46,6 @@ const Header = () => {
             <img src="/Images/hsk-logo.png" alt="HighSkul Creatives" />
           </a>
         </Link>
-
-        <div className={s.localDateTime} aria-label="Local date and time">
-          {localDateTime}
-        </div>
 
         <div className={s.actions}>
           <Button href="/lists" ariaLabel="My bookmarks">
