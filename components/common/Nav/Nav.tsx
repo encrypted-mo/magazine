@@ -10,37 +10,30 @@ import {
   MenuItem,
 } from '@components/ui/Menu'
 import More from '@components/icons/More'
-
 const Nav = ({ categories }: { categories: TCategory[] }) => {
   const router = useRouter()
   const { isHidden } = useHideOnScroll()
   const [localDate, setLocalDate] = useState('')
   const [localTime, setLocalTime] = useState('')
   const [localLocation, setLocalLocation] = useState('')
-
   const categoryMap = Object.fromEntries(
     categories.map((category) => [category.slug, category])
   )
-
   useEffect(() => {
     const updateDateTime = () => {
       const now = new Date()
-
       const dateFormatter = new Intl.DateTimeFormat(undefined, {
         weekday: 'long',
         day: '2-digit',
         month: 'long',
         year: 'numeric',
       })
-
       const timeFormatter = new Intl.DateTimeFormat(undefined, {
         hour: 'numeric',
         minute: '2-digit',
         hour12: true,
       })
-
       const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
-
       const locationMap: Record<string, string> = {
         'Africa/Accra': 'Accra, Ghana',
         'Africa/Lagos': 'Lagos, Nigeria',
@@ -62,26 +55,19 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
         'Asia/Dubai': 'Dubai, United Arab Emirates',
         'Australia/Sydney': 'Sydney, Australia',
       }
-
       setLocalDate(dateFormatter.format(now))
       setLocalTime(timeFormatter.format(now))
       setLocalLocation(locationMap[timezone] || timezone.replace('_', ' '))
     }
-
     updateDateTime()
-
     const interval = window.setInterval(updateDateTime, 60000)
-
     return () => {
       window.clearInterval(interval)
     }
   }, [])
-
   const navLinkClass =
     'relative flex items-center uppercase py-3 px-4 text-xs font-bold tracking-wide text-primary-90 transition-opacity hover:opacity-70'
-
   const isActive = (slug: string) => router.query.slug === slug
-
   const moreIsActive =
     router.pathname === '/opinion' ||
     router.pathname === '/events' ||
@@ -91,7 +77,6 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
     router.query.slug === 'arts-and-entertainment' ||
     router.query.slug === 'sports' ||
     router.query.slug === 'career-and-opportunities'
-
   return (
     <>
       <nav
@@ -112,7 +97,6 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
             Home
           </a>
         </Link>
-
         {categoryMap.news && (
           <Link href="/news">
             <a
@@ -125,7 +109,6 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
             </a>
           </Link>
         )}
-
         {categoryMap.academics && (
           <Link href="/academics">
             <a
@@ -138,7 +121,6 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
             </a>
           </Link>
         )}
-
         {categoryMap['student-life'] && (
           <Link href="/student-life">
             <a
@@ -151,7 +133,6 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
             </a>
           </Link>
         )}
-
         <MenuWrapper>
           <MenuButton ariaLabel="More navigation">
             <span
@@ -165,7 +146,6 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
               <More />
             </span>
           </MenuButton>
-
           <Menu title="More">
             {categoryMap['arts-and-entertainment'] && (
               <MenuItem
@@ -175,7 +155,6 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
                 Arts &amp; Entertainment
               </MenuItem>
             )}
-
             {categoryMap.sports && (
               <MenuItem
                 href="/sports"
@@ -184,7 +163,6 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
                 Sports
               </MenuItem>
             )}
-
             {categoryMap['career-and-opportunities'] && (
               <MenuItem
                 href="/career-and-opportunities"
@@ -193,7 +171,6 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
                 Career &amp; Opportunities
               </MenuItem>
             )}
-
             {categoryMap.opinion && (
               <MenuItem
                 href="/opinion"
@@ -202,28 +179,24 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
                 Opinion
               </MenuItem>
             )}
-
             <MenuItem
               href="/events"
               active={router.pathname === '/events'}
             >
               Events
             </MenuItem>
-
             <MenuItem
               href="/contributors"
               active={router.pathname === '/contributors'}
             >
               Contributors
             </MenuItem>
-
             <MenuItem
               href="/pages/about"
               active={router.pathname === '/pages/about'}
             >
               About Us
             </MenuItem>
-
             <MenuItem
               href="/pages/contact"
               active={router.pathname === '/pages/contact'}
@@ -233,29 +206,31 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
           </Menu>
         </MenuWrapper>
       </nav>
-
       <div
         className="flex items-center justify-between px-2 py-0 bg-secondary leading-none"
         aria-label="Local date, time and location"
       >
         <span
           className="uppercase font-medium tracking-wider text-primary-40"
-          style={{ fontSize: '4px' }}
+          style={{ fontSize: '6px' }}
+          aria-label={`Current location: ${localLocation}`}
         >
           {localLocation}
         </span>
-
         <div className="flex flex-col items-end">
           <span
             className="uppercase font-medium tracking-wide text-primary-40"
-            style={{ fontSize: '4px' }}
+            style={{ fontSize: '6px' }}
+            aria-label={`Today's date: ${localDate}`}
           >
             {localDate}
           </span>
-
           <span
             className="uppercase font-semibold tracking-wide text-primary-60"
-            style={{ fontSize: '5px' }}
+            style={{ fontSize: '7px' }}
+            aria-label={`Current local time: ${localTime}`}
+            aria-live="polite"
+            aria-atomic="true"
           >
             {localTime}
           </span>
@@ -264,5 +239,4 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
     </>
   )
 }
-
 export default Nav
