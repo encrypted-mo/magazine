@@ -211,12 +211,12 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
         </MenuWrapper>
       </nav>
       <div
-        className="sticky top-0 z-10 flex items-center justify-between px-2 py-0 bg-secondary leading-none"
+        className="sticky top-0 z-10 flex items-center justify-between px-2 py-[2px] bg-secondary leading-none"
         aria-label="Local date, time and location"
       >
         <span
           className="uppercase font-medium tracking-wider text-primary-40"
-          style={{ fontSize: '8px' }}
+          style={{ fontSize: '7px' }}
           aria-label={`Current location: ${localLocation}`}
         >
           {localLocation}
@@ -224,14 +224,14 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
         <div className="flex flex-col items-end">
           <span
             className="uppercase font-medium tracking-wide text-primary-40"
-            style={{ fontSize: '8px' }}
+            style={{ fontSize: '7px' }}
             aria-label={`Today's date: ${localDate}`}
           >
             {localDate}
           </span>
           <span
             className="uppercase font-semibold tracking-wide text-primary-60"
-            style={{ fontSize: '9px' }}
+            style={{ fontSize: '8px' }}
             aria-label={`Current local time: ${localTime}`}
             aria-live="polite"
             aria-atomic="true"
