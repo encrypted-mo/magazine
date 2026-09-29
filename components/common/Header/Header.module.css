@@ -29,11 +29,6 @@
   @apply h-11 w-auto;
 }
 
-.localDateTime {
-  @apply absolute left-1/2 -translate-x-1/2 whitespace-nowrap uppercase text-xs font-bold tracking-wide;
-  color: var(--secondary);
-}
-
 [data-theme='dark'] .header {
   background-color: var(--accent);
 }
@@ -61,10 +56,6 @@
 }
 
 @media screen and (max-width: 767px) {
-  .localDateTime {
-    @apply text-[10px] tracking-normal;
-  }
-
   .searchContainer::before {
     content: '';
 
