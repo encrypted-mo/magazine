@@ -3,68 +3,66 @@
   background-color: var(--primary);
   position: relative;
 }
+
 .header::after {
   content: '';
   position: absolute;
-  left: 1rem;
-  right: 1rem;
-  bottom: -3px;
+  left: 0;
+  right: 0;
+  bottom: -1px;
   height: 1px;
   background: var(--accent);
-  box-shadow: 0 3px 0 var(--secondary);
+  box-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.18),
+    0 4px 8px rgba(0, 0, 0, 0.08);
 }
-.header::before {
-  content: 'HS';
-  position: absolute;
-  z-index: 2;
-  right: 1.5rem;
-  bottom: -8px;
-  padding: 0 0.4rem;
-  background: var(--primary);
-  color: var(--accent);
-  font-size: 8px;
-  font-weight: 700;
-  line-height: 14px;
-  letter-spacing: 0.12em;
-}
+
 .headerInner {
   @apply h-16 px-4 flex items-center justify-between;
 }
+
 .logo {
   @apply flex items-center;
 }
+
 .logo img {
   @apply h-11 w-auto;
 }
+
 [data-theme='dark'] .header {
   background-color: var(--accent);
 }
-[data-theme='dark'] .header::before {
-  background: var(--accent);
-  color: var(--secondary);
-}
+
 .actions {
   @apply flex items-center gap-2;
 }
+
 .actions button,
 .actions a {
   color: var(--secondary);
 }
+
 .searchContainer {
   @apply justify-center items-center fixed top-0 left-0 right-0 py-6 px-4 md:py-0 md:w-2/5 md:left-auto lg:w-3/12;
   background-color: var(--secondary);
   color: var(--primary);
 }
+
 @media screen and (max-width: 767px) {
   .searchContainer::before {
     content: '';
+
     z-index: -1;
+
     @apply absolute top-0 right-0 left-0 h-screen;
+
     background-color: var(--secondary);
     opacity: 0.6;
+
     transform: translateY(6rem);
   }
 }
+
 .searchClear {
   @apply px-1 opacity-50 hover:opacity-100;
 }
