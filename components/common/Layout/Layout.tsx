@@ -24,7 +24,7 @@ const Layout = ({ children, navigation, isMarkdown = false }: Props) => {
       {navigation && <Nav categories={navigation.categories} />}
       <main
         className={cn(
-          'min-h-screen px-4 pt-8 pb-20 flex flex-col mx-auto md:w-3/4',
+          'min-h-screen px-4 pt-10 pb-20 flex flex-col mx-auto md:w-3/4',
           isMarkdown ? 'lg:w-7/12' : 'lg:w-2/3 xl:w-8/12'
         )}
       >
