@@ -21,12 +21,18 @@ const Menu = ({ children, title }: Props) => {
         <div
           className={cn(s.mobileMenu, 'animate-fade-in')}
           aria-label={title}
+          onClick={toggle}
         >
-          <div className={cn(s.mobileContent, 'animate-slide-up')}>
+          <div
+            className={cn(s.mobileContent, 'animate-slide-up')}
+            data-menu-content
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className={s.mobileHeader}>
               <p className={s.mobileTitle}>{title}</p>
 
               <button
+                type="button"
                 onClick={toggle}
                 className={s.mobileClose}
                 aria-label="Close menu"
@@ -46,7 +52,11 @@ const Menu = ({ children, title }: Props) => {
 
   return (
     <Portal id="menu">
-      <div className={s.menu} aria-label={title}>
+      <div
+        className={s.menu}
+        aria-label={title}
+        data-menu-content
+      >
         <p className={s.menuTitle}>{title}</p>
 
         <ul role="menu" className={s.menuList}>
