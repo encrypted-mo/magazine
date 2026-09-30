@@ -10,68 +10,51 @@ import {
   MenuItem,
 } from '@components/ui/Menu'
 import More from '@components/icons/More'
+
 const Nav = ({ categories }: { categories: TCategory[] }) => {
   const router = useRouter()
   const { isHidden } = useHideOnScroll()
   const [localDate, setLocalDate] = useState('')
   const [localTime, setLocalTime] = useState('')
-  const [localLocation, setLocalLocation] = useState('')
+
   const categoryMap = Object.fromEntries(
     categories.map((category) => [category.slug, category])
   )
+
   useEffect(() => {
     const updateDateTime = () => {
       const now = new Date()
+
       const dateFormatter = new Intl.DateTimeFormat(undefined, {
-        weekday: 'long',
-        day: '2-digit',
         month: 'long',
+        day: 'numeric',
         year: 'numeric',
       })
+
       const timeFormatter = new Intl.DateTimeFormat(undefined, {
         hour: 'numeric',
         minute: '2-digit',
         hour12: true,
       })
-      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
-      const locationMap: Record<string, string> = {
-        'Africa/Accra': 'Accra, Ghana',
-        'Africa/Lagos': 'Lagos, Nigeria',
-        'Africa/Abidjan': 'Abidjan, Côte d’Ivoire',
-        'Africa/Nairobi': 'Nairobi, Kenya',
-        'Africa/Cairo': 'Cairo, Egypt',
-        'Africa/Johannesburg': 'Johannesburg, South Africa',
-        'Europe/London': 'London, United Kingdom',
-        'Europe/Paris': 'Paris, France',
-        'Europe/Berlin': 'Berlin, Germany',
-        'America/New_York': 'New York, United States',
-        'America/Chicago': 'Chicago, United States',
-        'America/Denver': 'Denver, United States',
-        'America/Los_Angeles': 'Los Angeles, United States',
-        'America/Toronto': 'Toronto, Canada',
-        'Asia/Tokyo': 'Tokyo, Japan',
-        'Asia/Shanghai': 'Shanghai, China',
-        'Asia/Kolkata': 'Kolkata, India',
-        'Asia/Dubai': 'Dubai, United Arab Emirates',
-        'Australia/Sydney': 'Sydney, Australia',
-      }
-      const readableTimezone = timezone
-        .replace(/^Etc\/GMT/, 'GMT')
-        .replace(/\//g, ', ')
-        .replace(/_/g, ' ')
+
       setLocalDate(dateFormatter.format(now))
       setLocalTime(timeFormatter.format(now))
-      setLocalLocation(locationMap[timezone] || readableTimezone)
     }
+
     updateDateTime()
+
     const interval = window.setInterval(updateDateTime, 60000)
+
     return () => {
       window.clearInterval(interval)
     }
   }, [])
+
   const navLinkClass =
     'relative flex items-center uppercase py-3 px-4 text-xs font-bold tracking-wide text-primary-90 transition-opacity hover:opacity-70'
+
   const isActive = (slug: string) => router.query.slug === slug
+
   const moreIsActive =
     router.pathname === '/opinion' ||
     router.pathname === '/events' ||
@@ -81,6 +64,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
     router.query.slug === 'arts-and-entertainment' ||
     router.query.slug === 'sports' ||
     router.query.slug === 'career-and-opportunities'
+
   return (
     <>
       <nav
@@ -101,6 +85,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
             Home
           </a>
         </Link>
+
         {categoryMap.news && (
           <Link href="/news">
             <a
@@ -113,6 +98,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
             </a>
           </Link>
         )}
+
         {categoryMap.academics && (
           <Link href="/academics">
             <a
@@ -125,6 +111,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
             </a>
           </Link>
         )}
+
         {categoryMap['student-life'] && (
           <Link href="/student-life">
             <a
@@ -137,6 +124,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
             </a>
           </Link>
         )}
+
         <MenuWrapper>
           <MenuButton ariaLabel="More navigation">
             <span
@@ -150,6 +138,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
               <More />
             </span>
           </MenuButton>
+
           <Menu title="More">
             {categoryMap['arts-and-entertainment'] && (
               <MenuItem
@@ -159,6 +148,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
                 Arts &amp; Entertainment
               </MenuItem>
             )}
+
             {categoryMap.sports && (
               <MenuItem
                 href="/sports"
@@ -167,6 +157,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
                 Sports
               </MenuItem>
             )}
+
             {categoryMap['career-and-opportunities'] && (
               <MenuItem
                 href="/career-and-opportunities"
@@ -175,6 +166,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
                 Career &amp; Opportunities
               </MenuItem>
             )}
+
             {categoryMap.opinion && (
               <MenuItem
                 href="/opinion"
@@ -183,24 +175,28 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
                 Opinion
               </MenuItem>
             )}
+
             <MenuItem
               href="/events"
               active={router.pathname === '/events'}
             >
               Events
             </MenuItem>
+
             <MenuItem
               href="/contributors"
               active={router.pathname === '/contributors'}
             >
               Contributors
             </MenuItem>
+
             <MenuItem
               href="/pages/about"
               active={router.pathname === '/pages/about'}
             >
               About Us
             </MenuItem>
+
             <MenuItem
               href="/pages/contact"
               active={router.pathname === '/pages/contact'}
@@ -210,17 +206,11 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
           </Menu>
         </MenuWrapper>
       </nav>
+
       <div
-        className="sticky top-0 z-10 flex items-center justify-between px-2 py-[2px] bg-secondary leading-none"
-        aria-label="Local date, time and location"
+        className="sticky top-0 z-10 flex items-center justify-end px-2 py-[2px] bg-secondary leading-none"
+        aria-label="Local date and time"
       >
-        <span
-          className="uppercase font-medium tracking-wider text-primary-40"
-          style={{ fontSize: '7px' }}
-          aria-label={`Current location: ${localLocation}`}
-        >
-          {localLocation}
-        </span>
         <div className="flex flex-col items-end">
           <span
             className="uppercase font-medium tracking-wide text-primary-40"
@@ -229,6 +219,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
           >
             {localDate}
           </span>
+
           <span
             className="uppercase font-semibold tracking-wide text-primary-60"
             style={{ fontSize: '8px' }}
@@ -243,4 +234,5 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
     </>
   )
 }
+
 export default Nav
