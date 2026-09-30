@@ -26,6 +26,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
       const now = new Date()
 
       const dateFormatter = new Intl.DateTimeFormat(undefined, {
+        weekday: 'long',
         month: 'long',
         day: 'numeric',
         year: 'numeric',
@@ -213,7 +214,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
       >
         <div className="flex flex-col items-end">
           <span
-            className="uppercase font-medium tracking-wide text-primary-40"
+            className="font-medium tracking-wide text-primary-40"
             style={{ fontSize: '7px' }}
             aria-label={`Today's date: ${localDate}`}
           >
@@ -221,7 +222,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
           </span>
 
           <span
-            className="uppercase font-semibold tracking-wide text-primary-60"
+            className="font-semibold tracking-wide text-primary-60"
             style={{ fontSize: '8px' }}
             aria-label={`Current local time: ${localTime}`}
             aria-live="polite"
