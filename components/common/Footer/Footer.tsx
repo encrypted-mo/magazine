@@ -101,6 +101,10 @@ const Footer = () => {
       <SocialUrls />
 
       <ThemeSwitch />
+
+      <p className="mt-6 text-center text-xs text-primary-40">
+        © 2026 HighSkul Creatives. All rights reserved.
+      </p>
     </footer>
   )
 }
