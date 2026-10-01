@@ -10,7 +10,7 @@ function Article({ article }: { article: TArticle | undefined }) {
   if (!article) return <p>Something went wrong</p>
 
   return (
-    <article className="-mt-8 pb-16">
+    <article className="pb-16">
       <header className="pt-8 pb-12 md:pt-14 md:pb-16">
         <div className="mx-auto max-w-4xl">
           <Link href={`/${article.category.slug}`}>
@@ -23,7 +23,7 @@ function Article({ article }: { article: TArticle | undefined }) {
             </a>
           </Link>
 
-          <h1 className="serif mt-2 text-4xl leading-tight md:text-6xl md:leading-tight">
+          <h1 className="serif mt-3 text-4xl leading-tight md:text-6xl md:leading-tight">
             {article.title}
           </h1>
 
