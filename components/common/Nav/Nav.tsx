@@ -25,20 +25,27 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
     const updateDateTime = () => {
       const now = new Date()
 
-      const dateFormatter = new Intl.DateTimeFormat(undefined, {
+      const dateFormatter = new Intl.DateTimeFormat('en-US', {
         weekday: 'long',
         month: 'long',
         day: 'numeric',
         year: 'numeric',
       })
 
-      const timeFormatter = new Intl.DateTimeFormat(undefined, {
+      const timeFormatter = new Intl.DateTimeFormat('en-US', {
         hour: 'numeric',
         minute: '2-digit',
         hour12: true,
       })
 
-      setLocalDate(dateFormatter.format(now))
+      const formattedDate = dateFormatter.format(now)
+      const dateParts = formattedDate.split(', ')
+
+      setLocalDate(
+        dateParts.length === 3
+          ? `${dateParts[0]} • ${dateParts[1]}, ${dateParts[2]}`
+          : formattedDate
+      )
       setLocalTime(timeFormatter.format(now))
     }
 
