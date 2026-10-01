@@ -23,7 +23,7 @@ function Article({ article }: { article: TArticle | undefined }) {
             </a>
           </Link>
 
-          <h1 className="serif mt-3 text-4xl leading-tight md:text-6xl md:leading-tight">
+          <h1 className="serif mt-5 text-4xl leading-tight md:text-6xl md:leading-tight">
             {article.title}
           </h1>
 
