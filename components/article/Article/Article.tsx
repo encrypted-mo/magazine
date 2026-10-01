@@ -11,7 +11,7 @@ function Article({ article }: { article: TArticle | undefined }) {
 
   return (
     <article className="pb-16">
-      <header className="pt-8 pb-12 md:pt-14 md:pb-16">
+      <header className="pt-0 pb-12 md:pt-0 md:pb-16">
         <div className="mx-auto max-w-4xl">
           <Link href={`/${article.category.slug}`}>
             <a className="inline-flex items-center gap-2 uppercase text-xs font-bold tracking-widest text-accent hover:opacity-70">
