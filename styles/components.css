@@ -1,7 +1,6 @@
 @layer components {
   .serif {
-    @apply font-sans font-bold;
-    letter-spacing: -0.02em;
+    @apply font-serif font-normal;
   }
 
   .input-primary {
@@ -28,8 +27,7 @@
 
     & h2,
     & h3 {
-      @apply font-sans font-bold;
-      letter-spacing: -0.02em;
+      @apply font-serif font-normal;
     }
 
     & h2 {
@@ -39,15 +37,12 @@
     & h3 {
       @apply mt-10;
     }
-
     & h4 {
       @apply mt-8;
     }
-
     & h5 {
       @apply mt-6;
     }
-
     & hr {
       @apply border-primary-20 mt-20;
     }
@@ -87,7 +82,7 @@
       @apply font-bold;
     }
 
-    /* Ordered List */
+    /* Order List */
     & ol {
       @apply px-6 list-outside list-decimal leading-normal;
     }
