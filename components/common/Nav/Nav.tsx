@@ -221,7 +221,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
       >
         <div className="flex translate-y-[3px] flex-col items-end">
           <span
-            className="font-semibold tracking-wide text-primary-40"
+            className="font-bold tracking-wide text-primary-40"
             style={{ fontSize: '8px' }}
             aria-label={`Today's date: ${localDate}`}
           >
@@ -230,7 +230,7 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
 
           <span
             className="font-normal tracking-wide text-primary-60"
-            style={{ fontSize: '7px' }}
+            style={{ fontSize: '8px' }}
             aria-label={`Current local time: ${localTime}`}
             aria-live="polite"
             aria-atomic="true"
