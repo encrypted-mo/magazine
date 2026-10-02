@@ -114,7 +114,7 @@ function ArticlePage({
         images={coverImage ? [coverImage.url] : []}
       />
 
-      <div className="mx-auto w-full max-w-6xl px-4 -mt-2">
+      <div className="mx-auto w-full max-w-6xl px-4 -mt-4">
         <Button ariaLabel="Go back" href="/" className="-ml-2">
           <ArrowLeft />
         </Button>
