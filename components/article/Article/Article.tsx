@@ -23,11 +23,11 @@ function Article({ article }: { article: TArticle | undefined }) {
             </a>
           </Link>
 
-          <h1 className="serif mt-3 text-4xl leading-tight md:text-6xl md:leading-tight">
+          <h1 className="serif mt-4 text-5xl leading-none md:text-7xl md:leading-none">
             {article.title}
           </h1>
 
-          <div className="mt-6 flex flex-wrap items-center text-sm text-primary-60">
+          <div className="mt-6 flex flex-wrap items-center text-xs uppercase tracking-wide text-primary-60">
             <span>
               By{' '}
               <Link href={`/contributors/${article.author.slug}`}>
@@ -50,7 +50,12 @@ function Article({ article }: { article: TArticle | undefined }) {
         </div>
 
         <div className="mx-auto mt-10 max-w-6xl md:mt-14">
-          <div className="relative overflow-hidden bg-primary-05">
+          <div
+            className="relative overflow-hidden bg-primary-05"
+            style={{
+              border: '1px solid rgba(212, 175, 55, 0.45)',
+            }}
+          >
             <Image
               src={getMediaURL(
                 article.cover.formats.medium?.url || article.cover.url
@@ -64,7 +69,7 @@ function Article({ article }: { article: TArticle | undefined }) {
           </div>
 
           {article.cover.alternativeText && (
-            <p className="mt-3 text-xs text-primary-60">
+            <p className="mt-3 text-xs uppercase tracking-wide text-primary-60">
               {article.cover.alternativeText}
             </p>
           )}
@@ -75,7 +80,7 @@ function Article({ article }: { article: TArticle | undefined }) {
         <Markdown content={article.content} />
       </div>
 
-      <footer className="mx-auto mt-20 max-w-3xl border-t border-primary-10 pt-8 md:mt-28 md:pt-10">
+      <footer className="mx-auto mt-20 max-w-3xl border-t border-primary-20 pt-8 md:mt-28 md:pt-10">
         <div className="mb-4 uppercase text-xs font-bold tracking-widest text-accent">
           About the author
         </div>
