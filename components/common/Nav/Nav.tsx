@@ -189,26 +189,43 @@ const Nav = ({ categories }: { categories: TCategory[] }) => {
         </MenuWrapper>
       </nav>
       <div
-        className="sticky top-0 z-10 flex items-center justify-end px-2 py-[2px] bg-secondary leading-none"
+        className="sticky top-0 z-10 flex items-center justify-end px-3 py-[3px] bg-secondary leading-none"
         aria-label="Local date and time"
       >
-        <div className="flex translate-y-[3px] flex-col items-end">
+        <div className="flex items-center gap-2">
           <span
-            className="font-extrabold tracking-wide text-primary-40"
-            style={{ fontSize: '8px' }}
-            aria-label={`Today's date: ${localDate}`}
-          >
-            {localDate}
-          </span>
-          <span
-            className="font-bold tracking-wide text-primary-60"
-            style={{ fontSize: '8px' }}
-            aria-label={`Current local time: ${localTime}`}
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            {localTime}
-          </span>
+            className="h-px w-5"
+            style={{ backgroundColor: '#D4AF37' }}
+            aria-hidden="true"
+          />
+
+          <div className="flex items-center gap-2">
+            <span
+              className="font-medium uppercase tracking-[0.12em] text-primary-40"
+              style={{ fontSize: '8px' }}
+              aria-label={`Today's date: ${localDate}`}
+            >
+              {localDate}
+            </span>
+
+            <span
+              className="text-primary-20"
+              style={{ fontSize: '7px' }}
+              aria-hidden="true"
+            >
+              /
+            </span>
+
+            <span
+              className="font-bold tracking-[0.08em] text-primary-60"
+              style={{ fontSize: '8px' }}
+              aria-label={`Current local time: ${localTime}`}
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              {localTime}
+            </span>
+          </div>
         </div>
       </div>
     </>
