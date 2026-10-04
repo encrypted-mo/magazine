@@ -53,7 +53,7 @@ const ArticlesHero = ({ articles }: { articles: TArticle[] }) => {
                   <h1
                     className={cn(
                       s.title,
-                      'serif text-3xl md:text-4xl lg:text-5xl leading-tight overflow-hidden max-h-40 mt-4 mb-3 hover:underline'
+                      'serif text-4xl md:text-5xl lg:text-6xl leading-none overflow-hidden max-h-40 mt-4 mb-4 hover:underline'
                     )}
                   >
                     {heroArticle.title}
@@ -61,14 +61,16 @@ const ArticlesHero = ({ articles }: { articles: TArticle[] }) => {
                 </a>
               </Link>
 
-              <div className="flex flex-wrap items-center text-sm text-primary-60">
+              <div className="flex flex-wrap items-center text-xs uppercase tracking-wide text-primary-60">
                 By{' '}
                 <Link href={`/contributors/${heroArticle.author.slug}`}>
                   <a className="pl-1 pr-3 font-bold text-primary hover:underline">
                     {heroArticle.author.name}
                   </a>
                 </Link>
-                <span className="text-primary-20 mr-3">·</span>
+
+                <span className="text-accent mr-3">·</span>
+
                 <Date
                   className="text-primary-60"
                   date={heroArticle.published_at as string}
@@ -80,7 +82,7 @@ const ArticlesHero = ({ articles }: { articles: TArticle[] }) => {
           </article>
         </div>
 
-        <div className="lg:col-span-5 lg:border-l lg:pl-10 border-primary-10">
+        <div className="lg:col-span-5 lg:border-l lg:pl-10 border-primary-20">
           <div className="flex items-center mb-2">
             <span
               className="mr-3 w-2 h-2"
