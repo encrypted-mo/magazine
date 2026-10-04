@@ -9,6 +9,7 @@ import ArticlesHero from '@components/article/ArticlesHero/ArticlesHero'
 
 export async function getStaticPaths() {
   const categories: TCategory[] = await fetchAPI('/categories')
+
   return {
     paths: categories.map((category) => `/${category.slug}`),
     fallback: false,
@@ -25,6 +26,7 @@ export async function getStaticProps({
   const articles: TArticle[] = await fetchAPI(
     `/articles?category.slug=${params?.slug}`
   )
+
   const navigation: TNavigation = await getNavigation()
 
   return {
@@ -43,12 +45,29 @@ function CategoryPage({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const isTablet = useMediaQuery(1023)
 
+  const coverImage = category.cover
+    ? Object.values(category.cover.formats)
+        .filter(Boolean)
+        .sort((a, b) => (b?.width || 0) - (a?.width || 0))[0]
+    : null
+
+  const coverUrl = coverImage?.url
+    ? getMediaURL(coverImage.url)
+    : undefined
+
   if (articles.length === 0) {
     return (
       <Layout navigation={navigation}>
-        <Hero title={category.title} />
-        <div className="text-center my-auto">
-          <p>There are no articles to show yet.</p>
+        <Hero
+          title={category.title}
+          description={category.description}
+          image={coverUrl}
+        />
+
+        <div className="text-center my-auto py-20">
+          <p className="text-primary-70">
+            There are no articles to show yet.
+          </p>
         </div>
       </Layout>
     )
@@ -62,8 +81,6 @@ function CategoryPage({
         openGraph={{
           title: category.title,
           description: category.description,
-          // Only include OG image if exists
-          // This will break disabling Strapi Image Optimization
           ...(category.cover && {
             images: Object.values(category.cover.formats).map((image) => {
               return {
@@ -77,15 +94,25 @@ function CategoryPage({
       />
 
       <Layout navigation={navigation}>
-        <Hero title={category.title} />
+        <Hero
+          title={category.title}
+          description={category.description}
+          image={coverUrl}
+        />
+
         {isTablet ? (
-          //Tablet and smaller devices
-          <ArticlesCarousel title="Top stories" articles={articles} />
+          <ArticlesCarousel
+            title="Top Stories"
+            articles={articles}
+          />
         ) : (
           <ArticlesHero articles={articles} />
         )}
 
-        <ArticlesList articles={articles} title="Recent" />
+        <ArticlesList
+          articles={articles}
+          title="Recent"
+        />
 
         <div className="lg:py-24 lg:flex lg:gap-28 lg:mx-auto">
           <ArticlesList
@@ -94,6 +121,7 @@ function CategoryPage({
             variant="top"
             className="lg:w-1/2"
           />
+
           <ArticlesList
             articles={articles}
             title="Popular"
@@ -102,7 +130,10 @@ function CategoryPage({
           />
         </div>
 
-        <ArticlesList articles={articles} title="More articles" />
+        <ArticlesList
+          articles={articles}
+          title="More Articles"
+        />
       </Layout>
     </>
   )
