@@ -61,7 +61,7 @@ const ArticleCard = ({ article, variant = 'default' }: Props) => {
         </div>
 
         <Date
-          className="text-sm text-primary-60"
+          className="text-xs uppercase tracking-wide text-primary-60 mt-1"
           date={article.published_at as string}
         />
       </section>
