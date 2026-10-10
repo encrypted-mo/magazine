@@ -89,7 +89,7 @@ function ContributorPage({
     contributor.featured?.profile_image?.formats?.thumbnail?.url ||
     contributor.featured?.profile_image?.url
 
-  const imageUrl = imagePath ? getMediaURL(imagePath) : ''
+  const thumbnailUrl = imagePath ? getMediaURL(imagePath) : ''
 
   const contributorSocialMedia = (urls: TContributor['urls']) => {
     if (!urls) return []
@@ -130,17 +130,20 @@ function ContributorPage({
 
       <section className="py-8 md:py-12 text-center">
         {isFeatured && (
-          <figure className="relative mx-auto mb-6 h-28 w-28 md:h-36 md:w-36 overflow-hidden rounded-full bg-secondary">
-            {imageUrl.trim() !== '' ? (
+          <figure className="relative mx-auto mb-5 h-24 w-24 md:h-32 md:w-32 overflow-hidden rounded-full">
+            {thumbnailUrl.trim() !== '' ? (
               <Image
-                src={imageUrl}
-                alt={`${contributor.name} portrait`}
+                src={thumbnailUrl}
+                alt={`${contributor.name} profile`}
                 layout="fill"
                 objectFit="cover"
                 className="rounded-full"
               />
             ) : (
-              <span className="flex h-full w-full items-center justify-center text-3xl text-primary-60">
+              <span
+                className="flex h-full w-full items-center justify-center rounded-full bg-secondary text-2xl"
+                aria-hidden="true"
+              >
                 {contributor.name
                   .split(/\s+/)
                   .filter(Boolean)
@@ -152,19 +155,15 @@ function ContributorPage({
           </figure>
         )}
 
-        <p className="mb-3 text-xs uppercase tracking-widest text-primary-60">
-          Highskul Creatives Contributor
-        </p>
-
         <h1
-          className="text-4xl md:text-6xl leading-tight"
+          className="text-4xl md:text-5xl leading-tight"
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
           {contributor.name}
         </h1>
 
         {contributor.role && (
-          <p className="mt-2 text-xs md:text-sm uppercase tracking-widest text-primary-60">
+          <p className="mt-2 text-xs uppercase tracking-widest text-primary-60">
             {contributor.role}
           </p>
         )}
@@ -185,7 +184,7 @@ function ContributorPage({
         )}
 
         {isFeatured && contributor.featured?.description && (
-          <p className="mx-auto mt-6 max-w-2xl text-sm md:text-base leading-7 text-primary-70">
+          <p className="mx-auto mt-5 max-w-2xl text-sm md:text-base leading-7 text-primary-70">
             {contributor.featured.description}
           </p>
         )}
@@ -195,7 +194,7 @@ function ContributorPage({
         aria-label={`Stories by ${contributor.name}`}
         className="mt-8 md:mt-12"
       >
-        <div className="flex items-end justify-between border-b pb-3">
+        <div className="mb-0 flex items-end justify-between border-b pb-3">
           <h2 className="text-xs uppercase tracking-widest text-primary-60">
             Published Work
           </h2>
@@ -207,9 +206,12 @@ function ContributorPage({
         </div>
 
         {contributorArticles.length > 0 ? (
-          <ArticlesList articles={contributorArticles} title="Stories" />
+          <ArticlesList
+            articles={contributorArticles}
+            title="Stories"
+          />
         ) : (
-          <div className="py-10 md:py-14 border-b">
+          <div className="border-b py-10 md:py-14">
             <p
               className="text-2xl md:text-3xl"
               style={{ fontFamily: "'Cormorant Garamond', serif" }}
