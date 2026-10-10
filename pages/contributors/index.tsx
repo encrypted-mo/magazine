@@ -30,35 +30,29 @@ export function ContributorsPage({
 
   return (
     <Layout>
-      <section className="py-8 md:py-12">
-        <p className="text-xs uppercase tracking-widest text-primary-60 mb-3">
-          Highskul Creatives
-        </p>
-
+      <header className="py-8 md:py-10">
         <h1
-          className="text-5xl md:text-7xl leading-tight"
+          className="text-4xl md:text-5xl"
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
           Contributors
         </h1>
 
         <p className="mt-3 max-w-xl text-sm md:text-base leading-7 text-primary-70">
-          Meet the writers and creative voices behind our stories.
+          Meet the writers and creative voices behind Highskul Creatives.
         </p>
-      </section>
+      </header>
 
       {featured.length > 0 && (
-        <section aria-labelledby="featured-contributors-heading" className="mb-12">
-          <div className="border-b pb-3 mb-6">
-            <h2
-              id="featured-contributors-heading"
-              className="text-xs uppercase tracking-widest text-primary-60"
-            >
-              Featured Contributors
-            </h2>
-          </div>
+        <section aria-labelledby="featured-contributors-heading">
+          <h2
+            id="featured-contributors-heading"
+            className="mb-6 border-b pb-3 text-xs uppercase tracking-widest text-primary-60"
+          >
+            Featured Contributors
+          </h2>
 
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+          <ul className="flex flex-wrap">
             {featured.map((contributor) => (
               <ContributorFeatured
                 contributor={contributor}
@@ -70,15 +64,16 @@ export function ContributorsPage({
       )}
 
       {others.length > 0 && (
-        <section aria-labelledby="more-contributors-heading" className="mb-12">
-          <div className="border-b pb-3 mb-0">
-            <h2
-              id="more-contributors-heading"
-              className="text-xs uppercase tracking-widest text-primary-60"
-            >
-              More Contributors
-            </h2>
-          </div>
+        <section
+          className="mt-8 mb-12"
+          aria-labelledby="more-contributors-heading"
+        >
+          <h2
+            id="more-contributors-heading"
+            className="mb-0 border-b pb-3 text-xs uppercase tracking-widest text-primary-60"
+          >
+            More Contributors
+          </h2>
 
           <ul>
             {others.map((contributor) => (
@@ -92,7 +87,7 @@ export function ContributorsPage({
       )}
 
       {contributors.length === 0 && (
-        <section className="py-10 border-t border-b">
+        <section className="border-t border-b py-10">
           <h2
             className="text-3xl md:text-4xl"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
