@@ -12,7 +12,7 @@ const Hero = ({ title, description, image }: Props) => {
           <img
             src={image}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
           />
 
           <div
@@ -23,12 +23,13 @@ const Hero = ({ title, description, image }: Props) => {
             }}
           />
 
-          <div className="relative min-h-[320px] md:min-h-[420px] flex items-end p-6 md:p-10 lg:p-14">
+          <div className="relative flex min-h-[320px] items-end p-6 md:min-h-[420px] md:p-10 lg:p-14">
             <div className="max-w-4xl">
-              <div className="flex items-center gap-3 mb-5">
+              <div className="mb-5 flex items-center gap-3">
                 <span
                   className="h-px w-12"
                   style={{ backgroundColor: '#D4AF37' }}
+                  aria-hidden="true"
                 />
 
                 <span
@@ -40,7 +41,7 @@ const Hero = ({ title, description, image }: Props) => {
               </div>
 
               <h1
-                className="text-6xl md:text-8xl leading-[0.82] tracking-tight"
+                className="text-4xl md:text-5xl leading-tight tracking-tight"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   color: '#FFFFFF',
@@ -51,7 +52,7 @@ const Hero = ({ title, description, image }: Props) => {
 
               {description && (
                 <p
-                  className="mt-6 max-w-2xl text-base md:text-lg leading-7 md:leading-8"
+                  className="mt-5 max-w-2xl text-sm md:text-base leading-7 md:leading-8"
                   style={{ color: '#F3EFE5' }}
                 >
                   {description}
@@ -61,11 +62,12 @@ const Hero = ({ title, description, image }: Props) => {
           </div>
         </div>
       ) : (
-        <div className="py-8 md:py-12 border-b">
-          <div className="flex items-center gap-3 mb-5">
+        <div className="border-b py-8 md:py-10">
+          <div className="mb-4 flex items-center gap-3">
             <span
               className="h-px w-12"
               style={{ backgroundColor: '#D4AF37' }}
+              aria-hidden="true"
             />
 
             <span
@@ -77,16 +79,14 @@ const Hero = ({ title, description, image }: Props) => {
           </div>
 
           <h1
-            className="text-6xl md:text-8xl leading-[0.82] tracking-tight"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-            }}
+            className="text-4xl md:text-5xl leading-tight tracking-tight"
+            style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             {title}
           </h1>
 
           {description && (
-            <p className="mt-6 max-w-2xl text-base md:text-lg leading-8 text-primary-70">
+            <p className="mt-4 max-w-2xl text-sm md:text-base leading-7 text-primary-70">
               {description}
             </p>
           )}
