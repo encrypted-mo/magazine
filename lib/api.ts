@@ -83,6 +83,8 @@ function mapAuthor(doc: any): TContributor {
   }
 
   if (doc.image) {
+    const imageUrl = urlForImage(doc.image)
+
     author.featured = {
       id: 0,
       description: doc.bio || '',
@@ -97,7 +99,7 @@ function mapAuthor(doc: any): TContributor {
         ext: '',
         mime: '',
         size: 0,
-        url: urlForImage(doc.image),
+        url: imageUrl,
         previewUrl: null,
         provider: '',
         provider_metadata: null,
@@ -113,7 +115,7 @@ function mapAuthor(doc: any): TContributor {
             height: doc.imageHeight || 400,
             size: 0,
             path: null,
-            url: urlForImage(doc.image),
+            url: imageUrl,
           },
         },
       },
@@ -146,8 +148,13 @@ function mapPage(doc: any): TPage {
 export async function fetchAPI(path: string) {
   if (path.startsWith('/articles')) {
     const slugMatch = path.match(/\/articles\?slug=([^&]+)/)
+
     const categorySlugMatch = path.match(
       /\/articles\?category\.slug=([^&]+)/
+    )
+
+    const authorSlugMatch = path.match(
+      /\/articles\?author\.slug=([^&]+)/
     )
 
     const slug = slugMatch ? decodeURIComponent(slugMatch[1]) : null
@@ -156,61 +163,54 @@ export async function fetchAPI(path: string) {
       ? decodeURIComponent(categorySlugMatch[1])
       : null
 
+    const authorSlug = authorSlugMatch
+      ? decodeURIComponent(authorSlugMatch[1])
+      : null
+
+    const articleFields = `
+      _id,
+      _createdAt,
+      _updatedAt,
+      title,
+      "slug": slug.current,
+      publishedAt,
+      excerpt,
+      body,
+      coverImage,
+      "imageWidth": coverImage.asset->metadata.dimensions.width,
+      "imageHeight": coverImage.asset->metadata.dimensions.height,
+      category->{_id, title, "slug": slug.current},
+      author->{_id, name, "slug": slug.current}
+    `
+
     const query = slug
       ? `*[_type == "article" && slug.current == $slug][0]{
-          _id,
-          _createdAt,
-          _updatedAt,
-          title,
-          "slug": slug.current,
-          publishedAt,
-          excerpt,
-          body,
-          coverImage,
-          "imageWidth": coverImage.asset->metadata.dimensions.width,
-          "imageHeight": coverImage.asset->metadata.dimensions.height,
-          category->{_id, title, "slug": slug.current},
-          author->{_id, name, "slug": slug.current}
+          ${articleFields}
         }`
       : categorySlug
       ? `*[
           _type == "article" &&
           category->slug.current == $categorySlug
         ] | order(publishedAt desc){
-          _id,
-          _createdAt,
-          _updatedAt,
-          title,
-          "slug": slug.current,
-          publishedAt,
-          excerpt,
-          body,
-          coverImage,
-          "imageWidth": coverImage.asset->metadata.dimensions.width,
-          "imageHeight": coverImage.asset->metadata.dimensions.height,
-          category->{_id, title, "slug": slug.current},
-          author->{_id, name, "slug": slug.current}
+          ${articleFields}
+        }`
+      : authorSlug
+      ? `*[
+          _type == "article" &&
+          author->slug.current == $authorSlug
+        ] | order(publishedAt desc){
+          ${articleFields}
         }`
       : `*[_type == "article"] | order(publishedAt desc){
-          _id,
-          _createdAt,
-          _updatedAt,
-          title,
-          "slug": slug.current,
-          publishedAt,
-          excerpt,
-          body,
-          coverImage,
-          "imageWidth": coverImage.asset->metadata.dimensions.width,
-          "imageHeight": coverImage.asset->metadata.dimensions.height,
-          category->{_id, title, "slug": slug.current},
-          author->{_id, name, "slug": slug.current}
+          ${articleFields}
         }`
 
-    const params = categorySlug
-      ? { categorySlug }
-      : slug
+    const params = slug
       ? { slug }
+      : categorySlug
+      ? { categorySlug }
+      : authorSlug
+      ? { authorSlug }
       : {}
 
     const docs = await sanityClient.fetch(query, params)
@@ -219,7 +219,7 @@ export async function fetchAPI(path: string) {
       return docs ? [mapArticle(docs)] : []
     }
 
-    return docs.map(mapArticle)
+    return (docs || []).map(mapArticle)
   }
 
   if (path.startsWith('/categories')) {
@@ -252,11 +252,14 @@ export async function fetchAPI(path: string) {
       return docs ? [mapCategory(docs)] : []
     }
 
-    return docs.map(mapCategory)
+    return (docs || []).map(mapCategory)
   }
 
   if (path.startsWith('/contributors')) {
-    const query = `*[_type == "author"] | order(name asc){
+    const slugMatch = path.match(/\/contributors\?slug=([^&]+)/)
+    const slug = slugMatch ? decodeURIComponent(slugMatch[1]) : null
+
+    const contributorFields = `
       _id,
       _createdAt,
       _updatedAt,
@@ -271,11 +274,23 @@ export async function fetchAPI(path: string) {
       bio,
       "imageWidth": image.asset->metadata.dimensions.width,
       "imageHeight": image.asset->metadata.dimensions.height
-    }`
+    `
 
-    const docs = await sanityClient.fetch(query)
+    const query = slug
+      ? `*[_type == "author" && slug.current == $slug][0]{
+          ${contributorFields}
+        }`
+      : `*[_type == "author"] | order(name asc){
+          ${contributorFields}
+        }`
 
-    return docs.map(mapAuthor)
+    const docs = await sanityClient.fetch(query, slug ? { slug } : {})
+
+    if (slug) {
+      return docs ? [mapAuthor(docs)] : []
+    }
+
+    return (docs || []).map(mapAuthor)
   }
 
   if (path.startsWith('/lists')) {
@@ -318,7 +333,7 @@ export async function fetchAPI(path: string) {
       return docs ? [mapPage(docs)] : []
     }
 
-    return docs.map(mapPage)
+    return (docs || []).map(mapPage)
   }
 
   const requestUrl = getStrapiURL(path)
