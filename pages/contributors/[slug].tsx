@@ -1,6 +1,6 @@
 import { ArticlesList } from '@components/article'
 import { fetchAPI, getMediaURL } from '@lib/api'
-import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+import { GetStaticPropsContext } from 'next'
 import { useRouter } from 'next/router'
 import ExternalLink from '@components/ui/Link/ExternalLink'
 import Image from 'next/image'
@@ -9,6 +9,11 @@ import Custom404 from 'pages/404'
 import Twitter from '@components/icons/Twitter'
 import { BreadcrumbJsonLd, SocialProfileJsonLd } from 'next-seo'
 import { SITE_URL } from '@lib/constants'
+
+type ContributorPageProps = {
+  contributor: TContributor
+  articles: TArticle[]
+}
 
 export async function getStaticPaths() {
   const contributors: TContributor[] = await fetchAPI('/contributors')
@@ -60,7 +65,7 @@ export async function getStaticProps({
 function ContributorPage({
   contributor,
   articles,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+}: ContributorPageProps) {
   const { isFallback } = useRouter()
 
   if (isFallback) {
