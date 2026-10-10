@@ -11,28 +11,50 @@ import { BreadcrumbJsonLd, SocialProfileJsonLd } from 'next-seo'
 import { SITE_URL } from '@lib/constants'
 
 export async function getStaticPaths() {
-  const slugs: TContributor[] = await fetchAPI('/contributors')
+  const contributors: TContributor[] = await fetchAPI('/contributors')
 
   return {
-    paths: slugs.map((contributor) => `/contributors/${contributor.slug}`),
-    fallback: false,
+    paths: contributors.map(
+      (contributor) => `/contributors/${contributor.slug}`
+    ),
+    fallback: 'blocking',
   }
 }
 
 export async function getStaticProps({
   params,
 }: GetStaticPropsContext<{ slug: string }>) {
-  const contributor: TContributor = (
-    await fetchAPI(`/contributors?slug=${params?.slug}`)
-  )[0]
+  const slug = params?.slug
 
-  const articles: TArticle[] = await fetchAPI(
-    `/articles?author.slug=${params?.slug}`
-  )
+  if (!slug) {
+    return {
+      notFound: true,
+      revalidate: 60,
+    }
+  }
 
-  if (!contributor) return { props: {} }
+  const [contributors, articles]: [TContributor[], TArticle[]] =
+    await Promise.all([
+      fetchAPI(`/contributors?slug=${encodeURIComponent(slug)}`),
+      fetchAPI(`/articles?author.slug=${encodeURIComponent(slug)}`),
+    ])
 
-  return { props: { contributor, articles } }
+  const contributor = contributors[0]
+
+  if (!contributor) {
+    return {
+      notFound: true,
+      revalidate: 60,
+    }
+  }
+
+  return {
+    props: {
+      contributor,
+      articles,
+    },
+    revalidate: 60,
+  }
 }
 
 function ContributorPage({
@@ -41,14 +63,37 @@ function ContributorPage({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { isFallback } = useRouter()
 
-  if (!isFallback && !contributor) {
+  if (isFallback) {
+    return (
+      <Layout>
+        <div className="py-20 md:py-28">
+          <span
+            className="mb-5 block h-px w-12"
+            style={{ backgroundColor: '#D4AF37' }}
+            aria-hidden="true"
+          />
+
+          <p
+            className="text-3xl md:text-4xl"
+            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+          >
+            Preparing this profile…
+          </p>
+        </div>
+      </Layout>
+    )
+  }
+
+  if (!contributor) {
     return <Custom404 />
   }
 
-  const isFeatured = !!contributor?.featured
+  const contributorArticles = articles || []
+  const isFeatured = Boolean(contributor.featured)
 
   const thumbnailUrl = getMediaURL(
-    contributor?.featured?.profile_image.formats.thumbnail?.url
+    contributor.featured?.profile_image?.formats?.thumbnail?.url ||
+      contributor.featured?.profile_image?.url
   )
 
   const contributorSocialMedia = (urls: TContributor['urls']) => {
@@ -61,16 +106,16 @@ function ContributorPage({
       instagram && `https://instagram.com/${instagram}`,
       linkedin && `https://www.linkedin.com/in/${linkedin}`,
       twitter && `https://twitter.com/${twitter}`,
-    ].filter((elem) => elem !== null)
+    ].filter(Boolean) as string[]
   }
 
   return (
     <Layout>
       <SocialProfileJsonLd
         type="Person"
-        name={contributor?.name as string}
-        url={`${SITE_URL}/contributors/${contributor?.slug}`}
-        sameAs={contributorSocialMedia(contributor?.urls) as []}
+        name={contributor.name}
+        url={`${SITE_URL}/contributors/${contributor.slug}`}
+        sameAs={contributorSocialMedia(contributor.urls)}
       />
 
       <BreadcrumbJsonLd
@@ -82,8 +127,8 @@ function ContributorPage({
           },
           {
             position: 2,
-            name: contributor?.name as string,
-            item: `${SITE_URL}/contributors/${contributor?.name}`,
+            name: contributor.name,
+            item: `${SITE_URL}/contributors/${contributor.slug}`,
           },
         ]}
       />
@@ -94,6 +139,7 @@ function ContributorPage({
             <span
               className="h-px w-12"
               style={{ backgroundColor: '#D4AF37' }}
+              aria-hidden="true"
             />
 
             <span
@@ -116,34 +162,36 @@ function ContributorPage({
                   fontFamily: "'Cormorant Garamond', serif",
                 }}
               >
-                {contributor?.name}
+                {contributor.name}
               </h1>
 
-              <p className="mt-5 text-xs md:text-sm font-bold uppercase tracking-[0.18em] text-primary-60">
-                {contributor?.role}
-              </p>
+              {contributor.role && (
+                <p className="mt-5 text-xs md:text-sm font-bold uppercase tracking-[0.18em] text-primary-60">
+                  {contributor.role}
+                </p>
+              )}
 
-              {contributor?.urls?.twitter && (
+              {contributor.urls?.twitter && (
                 <ExternalLink
-                  to={`https://twitter.com/${contributor?.urls.twitter}`}
-                  ariaLabel="Contributor's twitter"
+                  to={`https://twitter.com/${contributor.urls.twitter}`}
+                  ariaLabel={`${contributor.name} on Twitter`}
                   className="flex w-max mt-5 items-center opacity-60 hover:opacity-100"
                 >
                   <span className="mr-2">
                     <Twitter width="18" height="18" />
                   </span>
 
-                  {contributor?.urls.twitter}
+                  {contributor.urls.twitter}
                 </ExternalLink>
               )}
             </div>
 
-            {isFeatured && (
+            {isFeatured && thumbnailUrl.trim() !== '' && (
               <figure className="md:col-span-4 md:justify-self-end w-40 h-40 md:w-52 md:h-52 relative">
                 <Image
                   src={thumbnailUrl}
                   className="object-cover"
-                  alt={`${contributor?.name} profile`}
+                  alt={`${contributor.name} profile`}
                   layout="fill"
                 />
 
@@ -158,13 +206,14 @@ function ContributorPage({
         </div>
       </section>
 
-      {isFeatured && contributor?.featured?.description && (
+      {isFeatured && contributor.featured?.description && (
         <section className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 mb-16 md:mb-24">
           <div className="md:col-span-4">
             <div className="flex items-center gap-3 mb-5">
               <span
                 className="h-px w-10"
                 style={{ backgroundColor: '#D4AF37' }}
+                aria-hidden="true"
               />
 
               <span
@@ -182,7 +231,7 @@ function ContributorPage({
         </section>
       )}
 
-      <section>
+      <section aria-label={`Stories by ${contributor.name}`}>
         <div className="flex items-end justify-between border-b pb-3 mb-0">
           <span
             className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]"
@@ -192,15 +241,30 @@ function ContributorPage({
           </span>
 
           <span className="text-[10px] uppercase tracking-[0.16em] text-primary-50">
-            {articles?.length || 0}{' '}
-            {(articles?.length || 0) === 1 ? 'Story' : 'Stories'}
+            {contributorArticles.length}{' '}
+            {contributorArticles.length === 1 ? 'Story' : 'Stories'}
           </span>
         </div>
 
-        <ArticlesList
-          articles={articles || []}
-          title="All Contributions"
-        />
+        {contributorArticles.length > 0 ? (
+          <ArticlesList
+            articles={contributorArticles}
+            title="Stories"
+          />
+        ) : (
+          <div className="py-10 md:py-14 border-b">
+            <p
+              className="text-2xl md:text-3xl"
+              style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            >
+              The first story is on its way.
+            </p>
+
+            <p className="mt-3 text-sm md:text-base leading-7 text-primary-60">
+              Published articles by {contributor.name} will appear here.
+            </p>
+          </div>
+        )}
       </section>
     </Layout>
   )
