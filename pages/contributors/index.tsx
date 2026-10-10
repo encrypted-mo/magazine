@@ -30,9 +30,24 @@ export function ContributorsPage({
 
   return (
     <Layout>
-      <header className="py-8 md:py-10">
+      <header className="border-b py-8 md:py-10">
+        <div className="mb-4 flex items-center gap-3">
+          <span
+            className="h-px w-12"
+            style={{ backgroundColor: '#D4AF37' }}
+            aria-hidden="true"
+          />
+
+          <span
+            className="text-[10px] md:text-xs font-bold uppercase tracking-[0.24em]"
+            style={{ color: '#8A6500' }}
+          >
+            The Newsroom
+          </span>
+        </div>
+
         <h1
-          className="text-4xl md:text-5xl"
+          className="text-4xl md:text-5xl leading-tight"
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
           Contributors
@@ -44,7 +59,10 @@ export function ContributorsPage({
       </header>
 
       {featured.length > 0 && (
-        <section aria-labelledby="featured-contributors-heading">
+        <section
+          className="pt-8"
+          aria-labelledby="featured-contributors-heading"
+        >
           <h2
             id="featured-contributors-heading"
             className="mb-6 border-b pb-3 text-xs uppercase tracking-widest text-primary-60"
