@@ -14,6 +14,7 @@ export async function getStaticProps() {
       articles,
       navigation,
     },
+    revalidate: 10,
   }
 }
 
