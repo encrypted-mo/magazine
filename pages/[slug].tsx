@@ -1,11 +1,25 @@
 import { ArticlesCarousel, ArticlesList } from '@components/article'
 import { Hero } from '@components/common/Hero'
-import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+import {
+  GetStaticProps,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+} from 'next'
 import { fetchAPI, getMediaURL, getNavigation } from '@lib/api'
 import { NextSeo } from 'next-seo'
 import { Layout } from '@components/common/Layout'
 import { useMediaQuery } from '@lib/hooks/use-media-queries'
 import ArticlesHero from '@components/article/ArticlesHero/ArticlesHero'
+
+type CategoryPageProps = {
+  category: TCategory
+  navigation: TNavigation
+  articles: TArticle[]
+}
+
+type CategoryPageParams = {
+  slug: string
+}
 
 export async function getStaticPaths() {
   const categories: TCategory[] = await fetchAPI('/categories')
@@ -16,9 +30,10 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({
-  params,
-}: GetStaticPropsContext<{ slug: string }>) {
+export const getStaticProps: GetStaticProps<
+  CategoryPageProps,
+  CategoryPageParams
+> = async ({ params }: GetStaticPropsContext<CategoryPageParams>) => {
   const category: TCategory = (
     await fetchAPI(`/categories?slug=${params?.slug}`)
   )[0]
