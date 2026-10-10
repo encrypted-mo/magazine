@@ -23,6 +23,13 @@ export async function getStaticProps({
     await fetchAPI(`/categories?slug=${params?.slug}`)
   )[0]
 
+  if (!category) {
+    return {
+      notFound: true,
+      revalidate: 10,
+    }
+  }
+
   const articles: TArticle[] = await fetchAPI(
     `/articles?category.slug=${params?.slug}`
   )
@@ -35,6 +42,7 @@ export async function getStaticProps({
       navigation,
       articles,
     },
+    revalidate: 10,
   }
 }
 
