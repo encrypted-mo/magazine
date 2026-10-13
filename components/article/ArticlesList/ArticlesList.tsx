@@ -1,6 +1,7 @@
 import { ArticleCard } from '..'
 import ArticleCardLists from '../ArticleCard/ArticleCardLists'
 import ArticleCardTop from '../ArticleCard/ArticleCardTop'
+import EditorialOrnament from '@components/common/EditorialOrnament'
 
 type Props = {
   articles: TArticle[]
@@ -41,16 +42,15 @@ const ArticlesList = ({
 
   return (
     <section className={className}>
-      <div className="relative flex items-center py-5 border-b border-primary-20">
-        <span
-          className="mr-3 w-2 h-2"
-          style={{
-            backgroundColor: 'var(--accent)',
-            transform: 'rotate(45deg)',
-          }}
+      <div className="relative flex items-center gap-3 py-5 border-b border-primary-20">
+        <EditorialOrnament
+          variant="mark"
+          className="shrink-0"
         />
 
-        <h2 className="uppercase text-xs font-bold tracking-widest">{title}</h2>
+        <h2 className="uppercase text-xs font-bold tracking-widest">
+          {title}
+        </h2>
       </div>
 
       {renderCards()}
