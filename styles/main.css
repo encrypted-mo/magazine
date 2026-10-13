@@ -4,7 +4,7 @@
     Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   --font-serif: 'Cormorant Garamond', serif;
 
-  /* HighSkul Core */
+  /* Highskul Core */
   --white: #ffffff;
   --black: #0a0a0a;
   --deep-black: #080808;
@@ -35,7 +35,7 @@
 
   --black-a-30: rgba(0, 0, 0, 0.3);
 
-  /* Theme Colors */
+  /* Theme Colours */
   --primary-a-30: var(--black-a-30);
   --primary: var(--black);
   --primary-95: var(--charcoal);
@@ -49,6 +49,37 @@
 
   --secondary: var(--gray-10);
   --accent: var(--gold);
+
+  /*
+   * Layered Editorial Surfaces
+   * These establish depth without requiring heavy 3D effects.
+   */
+  --surface: #faf8f2;
+  --surface-muted: #eee9dd;
+  --surface-raised: #fffdf8;
+  --surface-overlay: rgba(250, 248, 242, 0.94);
+
+  --surface-border: rgba(65, 65, 62, 0.13);
+  --surface-border-strong: rgba(65, 65, 62, 0.22);
+
+  /* Elevation */
+  --shadow-soft:
+    0 2px 5px rgba(45, 37, 20, 0.035),
+    0 6px 18px rgba(45, 37, 20, 0.065);
+
+  --shadow-raised:
+    0 4px 10px rgba(45, 37, 20, 0.045),
+    0 12px 30px rgba(45, 37, 20, 0.095);
+
+  --shadow-floating:
+    0 8px 18px rgba(45, 37, 20, 0.055),
+    0 20px 44px rgba(45, 37, 20, 0.12);
+
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+
+  /* Fine Gold Details */
+  --gold-hairline: rgba(138, 101, 0, 0.48);
+  --gold-hairline-soft: rgba(138, 101, 0, 0.24);
 
   /* Metallic Gold */
   --gold-metallic: linear-gradient(
@@ -64,19 +95,50 @@
 }
 
 [data-theme='dark'] {
-  --primary: var(--white);
-  --primary-95: var(--gray-05);
-  --primary-90: var(--gray-10);
-  --primary-80: var(--gray-20);
-  --primary-60: var(--gray-40);
-  --primary-40: var(--gray-60);
-  --primary-20: var(--gray-80);
-  --primary-10: var(--gray-90);
-  --primary-05: var(--gray-95);
+  /* Warm, readable text */
+  --primary: #f7f4ec;
+  --primary-95: #faf8f2;
+  --primary-90: #e6e1d6;
+  --primary-80: #c8c3b8;
+  --primary-60: #aaa69d;
+  --primary-40: #77756f;
+  --primary-20: #41413e;
+  --primary-10: #292a2b;
+  --primary-05: #202224;
 
-  --secondary: var(--deep-black);
+  /*
+   * Distinct dark surfaces.
+   * The background, cards and raised panels should not all
+   * collapse into the same shade of black.
+   */
+  --secondary: #101214;
+  --surface: #191c1f;
+  --surface-muted: #202428;
+  --surface-raised: #272c31;
+  --surface-overlay: rgba(25, 28, 31, 0.96);
+
+  --surface-border: rgba(243, 239, 229, 0.085);
+  --surface-border-strong: rgba(243, 239, 229, 0.15);
+
+  /* Deeper elevation for dark surfaces */
+  --shadow-soft:
+    0 3px 8px rgba(0, 0, 0, 0.2),
+    0 8px 20px rgba(0, 0, 0, 0.12);
+
+  --shadow-raised:
+    0 5px 12px rgba(0, 0, 0, 0.23),
+    0 14px 32px rgba(0, 0, 0, 0.22);
+
+  --shadow-floating:
+    0 9px 20px rgba(0, 0, 0, 0.28),
+    0 24px 48px rgba(0, 0, 0, 0.3);
+
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+
+  --gold-hairline: rgba(212, 175, 55, 0.46);
+  --gold-hairline-soft: rgba(212, 175, 55, 0.23);
+
   --accent: var(--gold);
-
   --black-a-30: rgba(0, 0, 0, 0.55);
 }
 
@@ -94,6 +156,7 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 html,
@@ -106,42 +169,149 @@ body {
   color: var(--primary);
 }
 
+/*
+ * Subtle ambient lighting.
+ * These gradients add atmosphere without placing heavy textures
+ * over article text or requiring image assets.
+ */
 body {
   position: relative;
   min-height: 100%;
   margin: 0;
-  background-image: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.18) 0%,
-    rgba(243, 239, 229, 0) 28%
-  );
+
+  background-image:
+    radial-gradient(
+      ellipse at 12% 0%,
+      rgba(212, 175, 55, 0.035),
+      transparent 36%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(243, 239, 229, 0) 34%
+    );
 }
 
 [data-theme='dark'] body {
-  background-image: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.025) 0%,
-    rgba(8, 8, 8, 0) 30%
-  );
+  background-image:
+    radial-gradient(
+      ellipse at 12% 0%,
+      rgba(212, 175, 55, 0.045),
+      transparent 36%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.035) 0%,
+      rgba(8, 8, 8, 0) 36%
+    );
 }
 
-a {
+/*
+ * Reusable Editorial Surfaces
+ *
+ * These classes provide a shared foundation for cards and panels.
+ * They are available for components to adopt gradually.
+ */
+
+.surface-card {
+  background-color: var(--surface);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--shadow-soft), var(--shadow-inset);
+}
+
+.surface-panel {
+  background-color: var(--surface-muted);
+  border: 1px solid var(--surface-border);
+}
+
+.surface-elevated {
+  background-color: var(--surface-raised);
+  border: 1px solid var(--surface-border-strong);
+  box-shadow: var(--shadow-raised), var(--shadow-inset);
+}
+
+.surface-floating {
+  background-color: var(--surface-raised);
+  border: 1px solid var(--surface-border-strong);
+  box-shadow: var(--shadow-floating), var(--shadow-inset);
+}
+
+.surface-overlay {
+  background-color: var(--surface-overlay);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--shadow-raised);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.surface-gold-detail {
+  border-color: var(--gold-hairline);
+}
+
+/* Gold should remain a deliberate accent, not a default border. */
+.gold-rule {
+  background-color: var(--gold);
+}
+
+.gold-outline {
+  border: 1px solid var(--gold-hairline);
+}
+
+/*
+ * Interactive depth.
+ * Only elements explicitly using these classes receive elevation.
+ */
+.interactive-surface {
   transition:
-    color 180ms ease,
-    opacity 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease,
     border-color 180ms ease,
     background-color 180ms ease;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .interactive-surface:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-raised);
+  }
+}
+
+.interactive-surface:active {
+  transform: translateY(0);
+}
+
+/* Accessible keyboard focus */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* Text selection */
 ::selection {
   background: var(--gold);
   color: var(--black);
 }
 
+/* Editorial serif utility */
 .serif {
   font-family: var(--font-serif);
   font-weight: 600;
   letter-spacing: -0.015em;
+}
+
+/* Respect readers who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 
 @media screen and (max-width: 991px) {
