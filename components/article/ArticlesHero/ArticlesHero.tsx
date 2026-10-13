@@ -6,6 +6,7 @@ import cn from 'classnames'
 import Image from 'next/image'
 import ArticleCardTop from '../ArticleCard/ArticleCardTop'
 import ActionButtons from '../Article/ActionButtons'
+import EditorialOrnament from '@components/common/EditorialOrnament'
 
 const ArticlesHero = ({ articles }: { articles: TArticle[] }) => {
   if (!articles.length) return null
@@ -37,12 +38,9 @@ const ArticlesHero = ({ articles }: { articles: TArticle[] }) => {
             <section className="pt-7">
               <Link href={`/${heroArticle.category.slug}`}>
                 <a className="inline-flex items-center uppercase text-xs font-bold tracking-widest text-accent hover:opacity-70">
-                  <span
-                    className="mr-2 inline-block w-1.5 h-1.5"
-                    style={{
-                      backgroundColor: 'var(--accent)',
-                      transform: 'rotate(45deg)',
-                    }}
+                  <EditorialOrnament
+                    variant="mark"
+                    className="mr-2"
                   />
                   {heroArticle.category.title}
                 </a>
@@ -69,7 +67,9 @@ const ArticlesHero = ({ articles }: { articles: TArticle[] }) => {
                   </a>
                 </Link>
 
-                <span className="text-accent mr-3">·</span>
+                <span className="text-primary-40 mx-3" aria-hidden="true">
+                  /
+                </span>
 
                 <Date
                   className="text-primary-60"
@@ -83,14 +83,8 @@ const ArticlesHero = ({ articles }: { articles: TArticle[] }) => {
         </div>
 
         <div className="lg:col-span-5 lg:border-l lg:pl-10 border-primary-20">
-          <div className="flex items-center mb-2">
-            <span
-              className="mr-3 w-2 h-2"
-              style={{
-                backgroundColor: 'var(--accent)',
-                transform: 'rotate(45deg)',
-              }}
-            />
+          <div className="flex items-center gap-3 mb-2">
+            <EditorialOrnament variant="mark" />
 
             <h2 className="uppercase text-xs font-bold tracking-widest">
               Top Stories
