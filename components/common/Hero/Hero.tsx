@@ -1,3 +1,5 @@
+import EditorialOrnament from '@components/common/EditorialOrnament'
+
 type Props = {
   title: string
   description?: string
@@ -26,10 +28,9 @@ const Hero = ({ title, description, image }: Props) => {
           <div className="relative flex min-h-[320px] items-end p-6 md:min-h-[420px] md:p-10 lg:p-14">
             <div className="max-w-4xl">
               <div className="mb-5 flex items-center gap-3">
-                <span
-                  className="h-px w-12"
-                  style={{ backgroundColor: '#D4AF37' }}
-                  aria-hidden="true"
+                <EditorialOrnament
+                  variant="mark"
+                  color="#F7E7A3"
                 />
 
                 <span
@@ -64,11 +65,7 @@ const Hero = ({ title, description, image }: Props) => {
       ) : (
         <div className="border-b py-8 md:py-10">
           <div className="mb-4 flex items-center gap-3">
-            <span
-              className="h-px w-12"
-              style={{ backgroundColor: '#D4AF37' }}
-              aria-hidden="true"
-            />
+            <EditorialOrnament variant="mark" />
 
             <span
               className="text-[10px] md:text-xs font-bold uppercase tracking-[0.24em]"
