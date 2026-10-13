@@ -1,4 +1,5 @@
 import { Date } from '@components/ui/Date'
+import EditorialOrnament from '@components/common/EditorialOrnament'
 import Link from 'next/link'
 import s from './ArticleCard.module.css'
 import cn from 'classnames'
@@ -11,7 +12,14 @@ type Props = {
 const ArticleCardTop = ({ article, index }: Props) => {
   return (
     <article className={s.top}>
-      <div className={s.topNumber}>{String(index).padStart(2, '0')}</div>
+      <div className={s.topNumber}>
+        <span>{String(index).padStart(2, '0')}</span>
+
+        <EditorialOrnament
+          variant="mark"
+          className={s.topNumberOrnament}
+        />
+      </div>
 
       <section>
         <Link href={`/articles/${article.slug}`}>
@@ -37,7 +45,9 @@ const ArticleCardTop = ({ article, index }: Props) => {
             </Link>
           </p>
 
-          <span className="mx-2 text-primary-20">·</span>
+          <span className="mx-2 text-primary-20" aria-hidden="true">
+            ·
+          </span>
 
           <Link href={`/${article.category.slug}`}>
             <a className="text-accent hover:underline">
@@ -45,7 +55,9 @@ const ArticleCardTop = ({ article, index }: Props) => {
             </a>
           </Link>
 
-          <span className="mx-2 text-primary-20">·</span>
+          <span className="mx-2 text-primary-20" aria-hidden="true">
+            ·
+          </span>
 
           <Date date={article.published_at as string} />
         </div>
