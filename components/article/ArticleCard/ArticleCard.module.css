@@ -76,6 +76,19 @@
   color: var(--accent);
 }
 
+.top .topNumberOrnament {
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin-top: 0.35rem;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.top:hover .topNumberOrnament {
+  opacity: 1;
+}
+
 .top:last-child {
   border-bottom: none;
 }
@@ -199,20 +212,4 @@
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-}
-
-.topNumber::after {
-  content: '';
-  display: block;
-  width: 5px;
-  height: 5px;
-  margin-top: 0.35rem;
-  background: var(--accent);
-  transform: rotate(45deg);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.top:hover .topNumber::after {
-  opacity: 1;
 }
