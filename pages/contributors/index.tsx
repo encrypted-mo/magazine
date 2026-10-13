@@ -1,6 +1,7 @@
 import { Layout } from '@components/common/Layout'
 import Contributor from '@components/contributor/Contributor'
 import ContributorFeatured from '@components/contributor/ContributorFeatured'
+import EditorialOrnament from '@components/common/EditorialOrnament'
 import { fetchAPI } from '@lib/api'
 import { InferGetStaticPropsType } from 'next'
 
@@ -32,11 +33,7 @@ export function ContributorsPage({
     <Layout>
       <header className="border-b py-8 md:py-10">
         <div className="mb-4 flex items-center gap-3">
-          <span
-            className="h-px w-12"
-            style={{ backgroundColor: '#D4AF37' }}
-            aria-hidden="true"
-          />
+          <EditorialOrnament variant="mark" />
 
           <span
             className="text-[10px] md:text-xs font-bold uppercase tracking-[0.24em]"
@@ -63,12 +60,16 @@ export function ContributorsPage({
           className="pt-8"
           aria-labelledby="featured-contributors-heading"
         >
-          <h2
-            id="featured-contributors-heading"
-            className="mb-6 border-b pb-3 text-xs uppercase tracking-widest text-primary-60"
-          >
-            Featured Contributors
-          </h2>
+          <div className="mb-6 flex items-center gap-3 border-b pb-3">
+            <EditorialOrnament variant="mark" />
+
+            <h2
+              id="featured-contributors-heading"
+              className="text-xs uppercase tracking-widest text-primary-60"
+            >
+              Featured Contributors
+            </h2>
+          </div>
 
           <ul className="flex flex-wrap">
             {featured.map((contributor) => (
@@ -86,12 +87,16 @@ export function ContributorsPage({
           className="mt-8 mb-12"
           aria-labelledby="more-contributors-heading"
         >
-          <h2
-            id="more-contributors-heading"
-            className="mb-0 border-b pb-3 text-xs uppercase tracking-widest text-primary-60"
-          >
-            More Contributors
-          </h2>
+          <div className="mb-0 flex items-center gap-3 border-b pb-3">
+            <EditorialOrnament variant="mark" />
+
+            <h2
+              id="more-contributors-heading"
+              className="text-xs uppercase tracking-widest text-primary-60"
+            >
+              More Contributors
+            </h2>
+          </div>
 
           <ul>
             {others.map((contributor) => (
