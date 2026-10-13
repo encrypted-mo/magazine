@@ -5,6 +5,7 @@ import { Date } from '@components/ui/Date'
 import ActionButtons from './ActionButtons'
 import { getMediaURL } from '@lib/api'
 import Image from 'next/image'
+import EditorialOrnament from '@components/common/EditorialOrnament'
 
 function Article({ article }: { article: TArticle | undefined }) {
   if (!article) return <p>Something went wrong</p>
@@ -15,10 +16,7 @@ function Article({ article }: { article: TArticle | undefined }) {
         <div className="mx-auto max-w-4xl">
           <Link href={`/${article.category.slug}`}>
             <a className="inline-flex items-center gap-2 uppercase text-xs font-bold tracking-widest text-accent hover:opacity-70">
-              <span
-                aria-hidden="true"
-                className="inline-block h-2 w-2 rotate-45 bg-accent"
-              />
+              <EditorialOrnament variant="mark" />
               {article.category.title}
             </a>
           </Link>
