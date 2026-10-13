@@ -1,16 +1,16 @@
 :root {
-  /* Typography */
+  /* Fonts */
   --font-sans: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   --font-serif: 'Cormorant Garamond', serif;
 
-  /* Core colours */
+  /* Highskul Core */
   --white: #ffffff;
   --black: #0a0a0a;
   --deep-black: #080808;
   --charcoal: #111111;
 
-  /* Warm editorial neutrals */
+  /* Warm Editorial Neutrals */
   --gray-05: #faf8f2;
   --gray-10: #f3efe5;
   --gray-20: #e7e3d8;
@@ -20,27 +20,23 @@
   --gray-90: #242422;
   --gray-95: #151513;
 
-  /* Gold family */
+  /* Gold */
   --gold: #d4af37;
   --gold-deep: #6f4f00;
   --gold-dark: #8a6500;
   --gold-light: #f7e7a3;
   --gold-highlight: #fff4c2;
 
-  /* Supporting editorial colours */
+  /* Supporting Editorial Colours */
   --olive: #737866;
   --dusty-blue: #737b82;
   --terracotta: #9a7665;
   --plum: #766b73;
 
-  /* Supporting colour tints */
-  --olive-tint: rgba(115, 120, 102, 0.12);
-  --dusty-blue-tint: rgba(115, 123, 130, 0.12);
-  --terracotta-tint: rgba(154, 118, 101, 0.12);
-  --plum-tint: rgba(118, 107, 115, 0.12);
-  --gold-tint: rgba(212, 175, 55, 0.12);
+  --black-a-30: rgba(0, 0, 0, 0.3);
 
-  /* Text and theme tokens */
+  /* Theme Colours */
+  --primary-a-30: var(--black-a-30);
   --primary: var(--black);
   --primary-95: var(--charcoal);
   --primary-90: var(--gray-90);
@@ -51,21 +47,22 @@
   --primary-10: var(--gray-10);
   --primary-05: var(--gray-05);
 
-  /* The page itself */
-  --secondary: var(--gray-05);
+  --secondary: var(--gray-10);
   --accent: var(--gold);
 
-  /* Layered light-mode surfaces */
-  --surface: #f3efe5;
+  /*
+   * Layered Editorial Surfaces
+   * These establish depth without requiring heavy 3D effects.
+   */
+  --surface: #faf8f2;
   --surface-muted: #eee9dd;
   --surface-raised: #fffdf8;
-  --surface-overlay: rgba(255, 253, 248, 0.96);
+  --surface-overlay: rgba(250, 248, 242, 0.94);
 
-  /* Surface borders */
-  --surface-border: rgba(65, 65, 62, 0.12);
-  --surface-border-strong: rgba(65, 65, 62, 0.2);
+  --surface-border: rgba(65, 65, 62, 0.13);
+  --surface-border-strong: rgba(65, 65, 62, 0.22);
 
-  /* Light-mode elevation */
+  /* Elevation */
   --shadow-soft:
     0 2px 5px rgba(45, 37, 20, 0.035),
     0 6px 18px rgba(45, 37, 20, 0.065);
@@ -80,11 +77,11 @@
 
   --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.75);
 
-  /* Fine gold details */
-  --gold-hairline: rgba(138, 101, 0, 0.42);
-  --gold-hairline-soft: rgba(138, 101, 0, 0.2);
+  /* Fine Gold Details */
+  --gold-hairline: rgba(138, 101, 0, 0.48);
+  --gold-hairline-soft: rgba(138, 101, 0, 0.24);
 
-  /* Metallic gold for special decorative details */
+  /* Metallic Gold */
   --gold-metallic: linear-gradient(
     110deg,
     #6f4f00 0%,
@@ -97,13 +94,8 @@
   );
 }
 
-/* =========================================================
-   DARK MODE
-   Distinct page, card, panel and raised-card surfaces.
-   ========================================================= */
-
 [data-theme='dark'] {
-  /* Readable warm text */
+  /* Warm, readable text */
   --primary: #f7f4ec;
   --primary-95: #faf8f2;
   --primary-90: #e6e1d6;
@@ -114,18 +106,21 @@
   --primary-10: #292a2b;
   --primary-05: #202224;
 
-  /* Layered blue-grey and charcoal surfaces */
+  /*
+   * Distinct dark surfaces.
+   * The background, cards and raised panels should not all
+   * collapse into the same shade of black.
+   */
   --secondary: #101214;
   --surface: #191c1f;
   --surface-muted: #202428;
   --surface-raised: #272c31;
-  --surface-overlay: rgba(25, 28, 31, 0.97);
+  --surface-overlay: rgba(25, 28, 31, 0.96);
 
-  /* Softer borders in dark mode */
   --surface-border: rgba(243, 239, 229, 0.085);
   --surface-border-strong: rgba(243, 239, 229, 0.15);
 
-  /* Dark-mode elevation */
+  /* Deeper elevation for dark surfaces */
   --shadow-soft:
     0 3px 8px rgba(0, 0, 0, 0.2),
     0 8px 20px rgba(0, 0, 0, 0.12);
@@ -140,20 +135,16 @@
 
   --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.035);
 
-  /* Gold details remain visible against dark surfaces */
   --gold-hairline: rgba(212, 175, 55, 0.46);
   --gold-hairline-soft: rgba(212, 175, 55, 0.23);
 
   --accent: var(--gold);
+  --black-a-30: rgba(0, 0, 0, 0.55);
 }
 
-/* =========================================================
-   DOCUMENT FOUNDATION
-   ========================================================= */
-
 *,
-*::before,
-*::after {
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -170,92 +161,84 @@ html {
 
 html,
 body {
-  min-height: 100%;
-  margin: 0;
   font-family: var(--font-sans);
-  color: var(--primary);
-  background-color: var(--secondary);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--secondary);
+  color: var(--primary);
 }
 
+/*
+ * Subtle ambient lighting.
+ * These gradients add atmosphere without placing heavy textures
+ * over article text or requiring image assets.
+ */
 body {
   position: relative;
-  min-height: 100vh;
+  min-height: 100%;
+  margin: 0;
+
   background-image:
     radial-gradient(
-      ellipse at 8% 0%,
-      rgba(212, 175, 55, 0.045),
-      transparent 34%
-    ),
-    radial-gradient(
-      ellipse at 100% 24%,
-      rgba(115, 120, 102, 0.035),
-      transparent 32%
+      ellipse at 12% 0%,
+      rgba(212, 175, 55, 0.035),
+      transparent 36%
     ),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.24) 0%,
-      rgba(243, 239, 229, 0) 38%
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(243, 239, 229, 0) 34%
     );
 }
 
 [data-theme='dark'] body {
   background-image:
     radial-gradient(
-      ellipse at 8% 0%,
-      rgba(212, 175, 55, 0.055),
-      transparent 34%
-    ),
-    radial-gradient(
-      ellipse at 100% 24%,
-      rgba(115, 123, 130, 0.045),
-      transparent 34%
+      ellipse at 12% 0%,
+      rgba(212, 175, 55, 0.045),
+      transparent 36%
     ),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.025) 0%,
-      rgba(8, 8, 8, 0) 40%
+      rgba(255, 255, 255, 0.035) 0%,
+      rgba(8, 8, 8, 0) 36%
     );
 }
 
-/* =========================================================
-   REUSABLE SURFACES
-   These take effect only when a component uses the class.
-   ========================================================= */
+/*
+ * Reusable Editorial Surfaces
+ *
+ * These classes provide a shared foundation for cards and panels.
+ * They are available for components to adopt gradually.
+ */
 
 .surface-card {
   background-color: var(--surface);
   border: 1px solid var(--surface-border);
-  border-radius: 0.875rem;
   box-shadow: var(--shadow-soft), var(--shadow-inset);
 }
 
 .surface-panel {
   background-color: var(--surface-muted);
   border: 1px solid var(--surface-border);
-  border-radius: 0.875rem;
 }
 
 .surface-elevated {
   background-color: var(--surface-raised);
   border: 1px solid var(--surface-border-strong);
-  border-radius: 0.875rem;
   box-shadow: var(--shadow-raised), var(--shadow-inset);
 }
 
 .surface-floating {
   background-color: var(--surface-raised);
   border: 1px solid var(--surface-border-strong);
-  border-radius: 1rem;
   box-shadow: var(--shadow-floating), var(--shadow-inset);
 }
 
 .surface-overlay {
   background-color: var(--surface-overlay);
   border: 1px solid var(--surface-border);
-  border-radius: 0.875rem;
   box-shadow: var(--shadow-raised);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -265,7 +248,7 @@ body {
   border-color: var(--gold-hairline);
 }
 
-/* Accent utilities */
+/* Gold should remain a deliberate accent, not a default border. */
 .gold-rule {
   background-color: var(--gold);
 }
@@ -274,51 +257,10 @@ body {
   border: 1px solid var(--gold-hairline);
 }
 
-/* Supporting colours for deliberate editorial accents */
-.accent-olive {
-  color: var(--olive);
-}
-
-.accent-dusty-blue {
-  color: var(--dusty-blue);
-}
-
-.accent-terracotta {
-  color: var(--terracotta);
-}
-
-.accent-plum {
-  color: var(--plum);
-}
-
-.accent-gold {
-  color: var(--gold-dark);
-}
-
-[data-theme='dark'] .accent-olive {
-  color: #b3b99f;
-}
-
-[data-theme='dark'] .accent-dusty-blue {
-  color: #aebbc5;
-}
-
-[data-theme='dark'] .accent-terracotta {
-  color: #d1a38e;
-}
-
-[data-theme='dark'] .accent-plum {
-  color: #bcaeba;
-}
-
-[data-theme='dark'] .accent-gold {
-  color: var(--gold-light);
-}
-
-/* =========================================================
-   INTERACTION AND ACCESSIBILITY
-   ========================================================= */
-
+/*
+ * Interactive depth.
+ * Only elements explicitly using these classes receive elevation.
+ */
 .interactive-surface {
   transition:
     transform 180ms ease,
@@ -338,11 +280,13 @@ body {
   transform: translateY(0);
 }
 
+/* Accessible keyboard focus */
 :focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 3px;
 }
 
+/* Text selection */
 ::selection {
   background: var(--gold);
   color: var(--black);
@@ -355,7 +299,7 @@ body {
   letter-spacing: -0.015em;
 }
 
-/* Respect reduced-motion preferences */
+/* Respect readers who prefer reduced motion. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
